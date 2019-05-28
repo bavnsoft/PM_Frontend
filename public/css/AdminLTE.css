@@ -5674,3 +5674,11 @@ table.text-center th {
 .skin-blue .wrapper, .skin-blue  .skin-blue .left-side{
   background-color: inherit!important;
 }
+a {
+    color: white;
+}
+
+
+.main-nav:hover{
+  color:  white;
+}

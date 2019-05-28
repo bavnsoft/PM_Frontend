@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 
 export default class Header extends Component {
+
+    logout(e){
+       window.location = '/login'
+    }
     render(){
         return (
             <header className="main-header">
                 <a href="#" className="logo">
                     <span className="logo-mini"><b>A</b>LT</span>
-                    <span className="logo-lg"><b>Admin</b>LTE</span>
+                    <span className="logo-lg"><b>PM_SOFTWARE</b></span>
                 </a>
                 <nav className="navbar navbar-static-top">
                     <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -40,6 +44,14 @@ export default class Header extends Component {
                                 </ul>
                             </li>
                         </ul>
+                        
+                        <div className="col-xs-4">
+
+              <div className="col-xs-4">
+                <button type="button"className="btn btn-primary" onClick={(e)=>this.logout(e)}>Logout</button>
+
+                 </div>
+              </div>
                     </div>
                 </nav>
             </header>

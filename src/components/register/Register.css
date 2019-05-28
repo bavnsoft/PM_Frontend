@@ -4,4 +4,10 @@
 
 .Register {
     /* propertys here */
+}.error{
+	display: none;
+
+}.error h5{
+	color:red;
+	
 }

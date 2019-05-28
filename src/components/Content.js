@@ -15,7 +15,7 @@ export default class Content extends Component {
                                     <div className="row">
                                         <div className="col-md-8">
                                             <p className="text-center">
-                                                <strong>This is text</strong>
+                                              <h1>  <strong>WELCOME TO HOME</strong></h1>
                                             </p>
                                         </div>
                                     </div>

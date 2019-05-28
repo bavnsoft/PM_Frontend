@@ -7,23 +7,32 @@
     <link rel="stylesheet" href="css/AdminLTE.css">
     <link rel="stylesheet" href="css/_all-skins.min.css">
     <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
     <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+
+  <link rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
       <link rel="stylesheet" href=".js/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="js/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="js/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="js/plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css">
+
     <title>React App</title>
-  </head>
-  <body class="hold-transition skin-blue sidebar-mini register-page">
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini register-page">
     <div id="root" class="wrapper"></div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/adminlte.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
     <script src="js/jquery.slimscroll.min.js"></script>
     <script src="https://use.fontawesome.com/581d5d54d2.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
+
 <!-- date-range-picker -->
 <script src="js/bower_components/moment/min/moment.min.js"></script>
 <script src="js/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -32,14 +41,14 @@
     <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    //$('.select2').select2()
 
     //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //$('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
     //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+   // $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
     //Money Euro
-    $('[data-mask]').inputmask()
+    //$('[data-mask]').inputmask()
 
     //Date range picker
     $('#reservation').daterangepicker()
@@ -96,5 +105,8 @@
     })
   })
 </script>
+
+
+
   </body>
 </html>
