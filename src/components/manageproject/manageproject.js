@@ -85,7 +85,7 @@ addst(){
 
      axios.post(config.LiveapiUrl+'addstatus', {status:status,id:this.state.project_id})
           .then((result) => {
-            //access the results here....
+            //access the results here.....
 
             console.log(result.data.user_id);
             if(result.data.status==true){
