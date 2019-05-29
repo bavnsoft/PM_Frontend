@@ -9,6 +9,7 @@ import moment from 'moment';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import swal from 'sweetalert';
+import config from '../../../config.json';
 
 const url='http://localhost:4000/';
 
@@ -30,7 +31,7 @@ class managetask extends Component {
   this.setState({loder:true});
 
      var user_id = localStorage.getItem('user_id'); 
-    axios.post(url+'getalltask', {user_id})
+    axios.post(config.LiveapiUrl+'getalltask', {user_id})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -60,7 +61,7 @@ class managetask extends Component {
 
   TaskApproved(emp_id){
     this.setState({loder:true});
-    axios.post(url+'TaskApprove', {emp_id:emp_id})
+    axios.post(config.LiveapiUrl+'TaskApprove', {emp_id:emp_id})
           .then((result) => {
               //access the results here....
                 if(result.data.status==true){

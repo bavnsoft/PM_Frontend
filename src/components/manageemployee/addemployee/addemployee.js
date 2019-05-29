@@ -8,6 +8,8 @@ import swal from 'sweetalert';
 import Autocomplete from  'react-autocomplete';
 //import { getStocks, matchStocks } from './data';
 import Autosuggest from 'react-autosuggest';
+import config from '../../../config.json';
+
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
   {
@@ -124,7 +126,7 @@ onChange = (event, { newValue }) => {
     //this.setState({loder:true});
 
  
-    axios.post(url+'autogenrate')
+    axios.post(config.LiveapiUrl+'autogenrate')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -242,11 +244,11 @@ formData.append('PhoneNo', PhoneNo);
 formData.append('employeedepartment', employeedepartment[0].name);
 formData.append('employeeprofile', employeeprofile);
 
-const config = {     
+const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(url+'employee', formData, config)
+      axios.post(config.LiveapiUrl+'employee', formData, configers)
           .then((result) => {
            
 

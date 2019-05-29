@@ -5,6 +5,7 @@ import Header from '../../Header';
 import SideBar from '../../SideBar';
 import axios from 'axios';
 import swal from 'sweetalert';
+import config from '../../../config.json';
 
 const url='http://localhost:4000/';
 class editemploye extends Component {
@@ -27,7 +28,7 @@ class editemploye extends Component {
   componentWillMount(){
 
         
-         axios.post(url+'GetEmpById', {id:this.props.match.params.id})
+         axios.post(config.LiveapiUrl+'GetEmpById', {id:this.props.match.params.id})
           .then((result) => {
             //access the results here....
             console.log(result)
@@ -126,11 +127,11 @@ formData.append('employeedepartment', employeedepartment);
 formData.append('employeeprofile', employeeprofile);
 formData.append('id', id);
 
-const config = {     
+const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(url+'editempolyes', formData, config)
+      axios.post(config.LiveapiUrl+'editempolyes', formData, configers)
       //console.log(req.body)
           .then((result) => {
            

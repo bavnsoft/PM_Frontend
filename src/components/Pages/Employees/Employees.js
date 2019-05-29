@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Employees.css';
 import Header from '../../Header';
 import SideBar from '../../SideBar';
+import config from '../../../config.json';
+
 class Employees extends Component {
   // constructor(props){
     // super(props);

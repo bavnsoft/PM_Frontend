@@ -7,6 +7,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import config from '../../../../config.json';
 
 
 const url='http://localhost:4000/';
@@ -134,13 +135,13 @@ formData.append('date', startDate);
 formData.append('Description', Description);
 formData.append('user_id', user_id);
 
-const config = {     
+const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
 //console.log('ll;l;l;l;l;')
 
-      axios.post(url+'addleaves', formData, config)
+      axios.post(config.LiveapiUrl+'addleaves', formData, configers)
           .then((result) => {
            
 

@@ -3,6 +3,7 @@ import './adddepartment.css';
 import $ from "jquery";
 import Header from '../../../Header';
 import SideBar from '../../../SideBar';
+import config from '../../../../config.json';
 
 
 class adddepartment extends Component {

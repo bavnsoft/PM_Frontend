@@ -7,6 +7,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import config from '../../../config.json';
 
 const url='http://localhost:4000/';
 class manageleave extends Component {
@@ -33,7 +34,7 @@ class manageleave extends Component {
 getleave(){
   this.setState({loder:true});
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(url+'getleaves')
+    axios.post(config.LiveapiUrl+'getleaves')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -58,7 +59,7 @@ ApprovedDisapprovedCancel(emp_id,status){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(url+'ApprovedDisapprovedCancelLeave',{emp_id:emp_id,status:status})
+                 axios.post(config.LiveapiUrl+'ApprovedDisapprovedCancelLeave',{emp_id:emp_id,status:status})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){

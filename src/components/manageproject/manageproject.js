@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import swal from 'sweetalert';
 import StarRatingComponent from 'react-star-rating-component';
+import config from '../../config.json';
 
 const url='http://localhost:4000/';
 class manageproject extends Component {
@@ -44,7 +45,7 @@ getproj(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(url+'getproject')
+    axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -81,7 +82,7 @@ addst(){
 
   addstatus(status){
 
-     axios.post(url+'addstatus', {status:status,id:this.state.project_id})
+     axios.post(config.LiveapiUrl+'addstatus', {status:status,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 

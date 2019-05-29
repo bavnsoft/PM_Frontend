@@ -7,6 +7,7 @@ import $ from "jquery";
 import axios from 'axios';
 import swal from 'sweetalert';
 const url='http://localhost:4000/';
+import config from '../../../config.json';
 
 class department extends Component {
    constructor(props){
@@ -31,7 +32,7 @@ class department extends Component {
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(url+'getdepartment')
+    axios.post(config.LiveapiUrl+'getdepartment')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -64,7 +65,7 @@ Delete(id){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(url+'deletedepartment', {id:id})
+               axios.post(config.LiveapiUrl+'deletedepartment', {id:id})
                   .then((result) => {
                    console.log(result.data.message);
 
@@ -117,7 +118,7 @@ departmentname(e){
 
     const  {departmentname} = this.state;
 
-      axios.post(url+'department', {departmentname})
+      axios.post(config.LiveapiUrl+'department', {departmentname})
           .then((result) => {
             //access the results here....
 
@@ -143,7 +144,7 @@ departmentname(e){
   updatedepartmentname(e){
 
     const  {editdepartmentname,departmentId} = this.state;
-     axios.post(url+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
+     axios.post(config.LiveapiUrl+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
           .then((result) => {
             //access the results here....
 

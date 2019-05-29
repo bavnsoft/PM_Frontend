@@ -10,6 +10,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Link} from 'react-router-dom';
+import config from '../../../config.json';
 
 
 import moment from 'moment';
@@ -130,7 +131,7 @@ timeout(e){
       icon: "success",
   });
 
-                axios.post(url+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
+                axios.post(config.LiveapiUrl+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
                     .then((result) => {
                       //access the results here....
 
@@ -192,7 +193,7 @@ timeout(e){
   const  {discription} = this.state;
 
 
-      axios.post(url+'addtask', {discription,user_id})
+      axios.post(config.LiveapiUrl+'addtask', {discription,user_id})
           .then((result) => {
             //access the results here....
 
@@ -221,7 +222,7 @@ timeout(e){
    // this.setState({loder:true});
 
      var user_id = localStorage.getItem('user_id'); 
-     axios.post(url+'featchTask', {user_id})
+     axios.post(config.LiveapiUrl+'featchTask', {user_id})
           .then((result) => {
             //access the results here....
 

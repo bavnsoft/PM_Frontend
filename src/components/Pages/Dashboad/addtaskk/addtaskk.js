@@ -5,6 +5,7 @@ import $ from "jquery";
 import Header from '../../../Header';
 import SideBar from '../../../SideBar';
 import swal from 'sweetalert';
+import config from '../../../../config.json';
 
 const url='http://localhost:4000/';
 class addtaskk extends Component {
@@ -79,12 +80,12 @@ let formData = new FormData();    //formdata object
 formData.append('projectname', projectname);   //append the values with key, value pair
 formData.append('TaskName', TaskName);
 formData.append('Hours', Hours);
-const config = {     
+const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
 
-      axios.post(url+'project', {projectname, TaskName,Hours})
+      axios.post(config.LiveapiUrl+'project', {projectname, TaskName,Hours})
           .then((result) => {
             //access the results here....
 

@@ -1,0 +1,7 @@
+{
+  "LiveapiUrl": "https://pmbackends.herokuapp.com/",
+  "LocalapiUrl": "http://localhost:4000/",
+  "profileApiUrl": "http://localhost:4000",
+  "geoApiUrl": "https://api.soluvas.com/geo/v1",
+  "mediaUrl": "https://media.heartenly.com/stg"
+}

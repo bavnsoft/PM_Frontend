@@ -7,6 +7,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import config from '../../config.json';
 
 const url='http://localhost:4000/';
 
@@ -41,7 +42,7 @@ getEmp(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(url+'getempolyes')
+    axios.post(config.LiveapiUrl+'getempolyes')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -72,7 +73,7 @@ Delete(employeeid){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(url+'deleteempolyes', {employeeid:employeeid})
+               axios.post(config.LiveapiUrl+'deleteempolyes', {employeeid:employeeid})
                   .then((result) => {
                    console.log(result.data.message);
 

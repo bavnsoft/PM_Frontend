@@ -5,6 +5,7 @@ import $ from "jquery";
 import Header from '../../../Header';
 import SideBar from '../../../SideBar';
 import swal from 'sweetalert';
+import config from '../../../../config.json';
 
 const url='http://localhost:4000/';
 
@@ -96,7 +97,7 @@ console.log(this.state);
 
     const  {projectname, TaskName ,TaskDetail,Hours,upload} = this.state;
 
-      axios.post(url+'project', {projectname, TaskName,TaskDetail,Hours,upload})
+      axios.post(config.LiveapiUrl+'project', {projectname, TaskName,TaskDetail,Hours,upload})
           .then((result) => {
             //access the results here....
 

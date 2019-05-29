@@ -4,6 +4,7 @@ import $ from "jquery";
 import axios from 'axios';
 //import swal from 'bootstrap-sweetalert';
 import swal from 'sweetalert';
+import config from '../../config.json';
 
 const url='http://localhost:4000/';
 class Register extends Component {
@@ -67,7 +68,7 @@ console.log(this.state);
 }
 
    const { username, email, password } = this.state;
-   axios.post(url+'signup', { username, email, password})
+   axios.post(config.LiveapiUrl+'signup', { username, email, password})
           .then((result) => {
             //access the results here....
 

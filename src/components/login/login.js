@@ -3,6 +3,7 @@ import './login.css';
 import $ from "jquery";
 import axios from 'axios';
 import swal from 'sweetalert';
+import config from '../../config.json';
 
 
 const url='http://localhost:4000/';
@@ -51,7 +52,7 @@ login(e){
 }
 
  const { email, password } = this.state;
-   axios.post(url+'login', {email, password})
+   axios.post(config.LiveapiUrl+'login', {email, password})
           .then((result) => {
             //access the results here....
 

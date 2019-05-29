@@ -7,6 +7,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import config from '../../../config.json';
 
 const url='http://localhost:4000/';
 class addproject extends Component {
@@ -138,7 +139,7 @@ const config = {
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(url+'project', formData, config)
+      axios.post(config.LiveapiUrl+'project', formData, config)
           .then((result) => {
            
 
