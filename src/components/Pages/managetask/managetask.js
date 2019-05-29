@@ -30,7 +30,7 @@ class managetask extends Component {
   componentWillMount(){
   this.setState({loder:true});
 
-     var user_id = localStorage.getItem('user_id'); 
+    var user_id = localStorage.getItem('user_id'); 
     axios.post(config.LiveapiUrl+'getalltask', {user_id})
           .then((result) => {
             //access the results here....
@@ -38,14 +38,14 @@ class managetask extends Component {
                   var usertask = result.data.result
                   var userTasks = [];
                    for(let i=0;i<usertask.length;i++){
-                    console.log(usertask[i].user_id.user_id,'---')
+                  
                        userTasks.push({
                         date:usertask[i].date,
                         discription:usertask[i].discription,
                         status:usertask[i].status,
                         timeout:usertask[i].timeout,
-                        user_id:usertask[i].user_id._id,
-                        employeename:usertask[i].user_id.employeename,
+                        user_id:usertask[i].user_id ? usertask[i].user_id._id : null,
+                        employeename:usertask[i].user_id ? usertask[i].user_id.employeename : 'N/A',
                        })
 
                    } 
