@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 import $ from "jquery";
 import axios from 'axios';
 import swal from 'sweetalert';
-const url='http://localhost:4000/';
 import config from '../../../config.json';
+
+const url='http://localhost:4000/';
 
 class department extends Component {
    constructor(props){
