@@ -135,11 +135,11 @@ formData.append('startDate', startDate);
 formData.append('endDate', endDate);
 formData.append('upload', upload);
 
-const config = {     
+const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(config.LiveapiUrl+'project', formData, config)
+      axios.post(config.LiveapiUrl+'project', formData, configers)
           .then((result) => {
            
 
