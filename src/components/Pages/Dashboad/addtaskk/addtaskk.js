@@ -13,7 +13,7 @@ class addtaskk extends Component {
     super(props);
     this.state = {
        projectname:'',
-        TaskName:'',
+        description:'',
         Hours:'', 
          name: "",
       shareholders: [{ name: "" }]
@@ -34,12 +34,12 @@ componentDidMount(){
   
     }
 
-projectname(e){
-    this.setState({projectname:e.target.value})
+TaskName(e){
+    this.setState({TaskName:e.target.value})
   }
 
-  TaskName(e){
-    this.setState({TaskName:e.target.value})
+  description(e){
+    this.setState({description:e.target.value})
   }
   Hours(e){
     this.setState({Hours:e.target.value})
@@ -47,16 +47,16 @@ projectname(e){
 
   save(e){
   console.log(this.state);
-  if(!this.state.projectname.trim()){
+  if(!this.state.TaskName.trim()){
       $(".errorr").show();
-      $(".errorr h5").html("Please enter Your Project Name")
+      $(".errorr h5").html("Please enter Your Task Name")
       setTimeout(function(){ $(".errorr").hide();},3000);
       return false;
 }
  console.log(this.state);
-  if(!this.state.TaskName.trim()){
+  if(!this.state.description.trim()){
       $(".errorrr").show();
-      $(".errorrr h5").html("Please enter your Task Name")
+      $(".errorrr h5").html("Please enter Description")
       setTimeout(function(){ $(".errorrr").hide();},3000);
       return false;
 
@@ -259,6 +259,7 @@ handleShareholderDescription = idx => evt => {
 
 
               onChange={this.handleShareholderNameChange(idx)}
+              onChange={(e)=>this.TaskName(e)}
             />
             </div>
 
