@@ -215,7 +215,7 @@ handleShareholderDescription = idx => evt => {
              <section className="content">
         <div className="row">
           {/* left column */}
-          <div className="col-md-6">
+          <div className="col-md-8">
             {/* general form elements */}
             <div className="box box-primary">
               <div className="box-header with-border">
@@ -250,7 +250,7 @@ handleShareholderDescription = idx => evt => {
         {this.state.shareholders.map((shareholder, idx) => (
           <div className="shareholder">
             <div className="row">
-                <div className="col-md-4">
+                <div className="col-sm-4">
             <input
               type="text"
               placeholder={`Task ${idx + 1} Name`}
@@ -264,7 +264,7 @@ handleShareholderDescription = idx => evt => {
             </div>
 
             
-            <div className="col-md-3">
+            <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Description`}
@@ -273,7 +273,7 @@ handleShareholderDescription = idx => evt => {
                 />
             </div>
 
-            <div className="col-md-3">
+            <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Hours`}
@@ -282,7 +282,7 @@ handleShareholderDescription = idx => evt => {
                 />
             </div>
 
-            <div className="col-md-2">
+            <div className="col-sm-2">
                 <button
                   type="button" className="btn btn-danger"
                   onClick={this.handleRemoveShareholder(idx)}
