@@ -45,7 +45,7 @@ TaskName(e){
     this.setState({Hours:e.target.value})
   }
 
-  save(e){
+  submit(e){
   console.log(this.state);
   if(!this.state.TaskName.trim()){
       $(".errorr").show();
@@ -259,7 +259,7 @@ handleShareholderDescription = idx => evt => {
 
 
               onChange={this.handleShareholderNameChange(idx)}
-              onChange={(e)=>this.TaskName(e)}
+             
             />
             </div>
 
