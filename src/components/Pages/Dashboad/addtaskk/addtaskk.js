@@ -168,12 +168,12 @@ const configers = {
               {/* /.box-header */}
               {/* form start */}
                <form onSubmit={this.handleSubmit}>
-        <input
+       {/* <input
           type="text"
           placeholder="Bavn Soft"
           value={this.state.name}
           onChange={this.handleNameChange}
-        />
+        />*/}
 
         <h4>Today Task Detail</h4>
 
