@@ -173,7 +173,7 @@ handleShareholderDescription = idx => evt => {
 
      axios.post(config.LiveapiUrl+'addtaskk', {taskk:this.state.shareholders,id:this.state.project_id})
           .then((result) => {
-            //access the results here....
+            //access the results here.....
 
             console.log(result.data.user_id);
             if(result.data.status==true){
