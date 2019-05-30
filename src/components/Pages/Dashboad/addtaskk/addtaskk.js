@@ -268,7 +268,7 @@ handleShareholderDescription = idx => evt => {
                   type="text"
                   placeholder={`Description`}
                   value={shareholder.description}
-                  onChange={this.handleShareholderDetail(idx)}
+                  onChange={this.handleShareholderDescription(idx)}
                 />
             </div>
 
