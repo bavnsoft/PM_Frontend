@@ -296,7 +296,7 @@ handleShareholderDescription = idx => evt => {
        </div>
         ))}
 
-     <button type="button" className="btn btn-primary" onClick={(e)=>this.submit(e)}>submit</button>
+     <button type="button" className="btn btn-primary" onClick={(e)=>this.addtaskk(e)}>submit</button>
 
       </form>
             
