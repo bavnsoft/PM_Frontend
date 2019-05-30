@@ -119,6 +119,36 @@ const configers = {
     this.setState({ shareholders: newShareholders });
   };
 
+
+
+
+
+handleShareholderDescription = idx => evt => {
+    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
+      if (idx !== sidx) return shareholder;
+      return { ...shareholder, description: evt.target.value };
+    });
+
+    this.setState({ shareholders: newShareholders });
+  };
+
+
+
+
+  handleShareholderHours = idx => evt => {
+    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
+      if (idx !== sidx) return shareholder;
+      return { ...shareholder, hours: evt.target.value };
+    });
+
+    this.setState({ shareholders: newShareholders });
+  };
+
+
+
+
+
+
   handleSubmit = evt => {
     const { name, shareholders } = this.state;
     alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
@@ -135,6 +165,46 @@ const configers = {
       shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
     });
   };
+
+
+
+
+  addtaskk(taskk){
+
+     axios.post(config.LiveapiUrl+'addtaskk', {taskk:this.state.shareholders,id:this.state.project_id})
+          .then((result) => {
+            //access the results here....
+
+            console.log(result.data.user_id);
+            if(result.data.status==true){
+                swal(result.data.message);
+               
+                
+            }else{
+                    swal(result.data.message);
+
+            }
+
+          });
+  }
+ 
+
+  updatetaskk(id){
+
+    this.setState({project_id:id})
+
+  }
+ gettaskk(id,taskk){
+    if(taskk){    
+       this.setState({project_id:id,shareholders:JSON.parse(taskk)});
+    }else{
+     this.setState({project_id:id,shareholders: [{ name: "" }]});
+    }
+  }
+
+
+
+
 
   render() {
     return (
@@ -180,7 +250,7 @@ const configers = {
         {this.state.shareholders.map((shareholder, idx) => (
           <div className="shareholder">
             <div className="row">
-                <div className="col-sm-5">
+                <div className="col-md-4">
             <input
               type="text"
               placeholder={`Task ${idx + 1} Name`}
@@ -192,24 +262,32 @@ const configers = {
             />
             </div>
 
-
-            <div className="col-sm-5">
+            
+            <div className="col-md-3">
                 <input
                   type="text"
-                  placeholder={`Total hours`}
-                  value={shareholder.hours}
-                  onChange={this.handleShareholderNameChange(idx)}
+                  placeholder={`Description`}
+                  value={shareholder.description}
+                  onChange={this.handleShareholderDetail(idx)}
                 />
             </div>
 
-            <div className="col-sm-2">
+            <div className="col-md-3">
+                <input
+                  type="text"
+                  placeholder={`Hours`}
+                  value={shareholder.hours}
+                  onChange={this.handleShareholderHours(idx)}
+                />
+            </div>
+
+            <div className="col-md-2">
                 <button
                   type="button" className="btn btn-danger"
                   onClick={this.handleRemoveShareholder(idx)}
                   className="small">
                 
               <i className="fa fa-times"></i>
-
                </button>
               </div>
 
