@@ -153,7 +153,7 @@ timeout(e){
                     });
                 
             } else {
-         //  swal("Your imaginary file is safe!");
+         //  swal("Your imaginary file is safe!..");
                      }
           });
  
