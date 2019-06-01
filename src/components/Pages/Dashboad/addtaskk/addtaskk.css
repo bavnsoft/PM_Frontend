@@ -5,3 +5,10 @@
 .addtaskk {
     /* propertys here */
 }
+button.btn.btn-primary.submit {
+    width: 234px;
+}
+form button:disabled {
+    background-color: #337ab7!important;
+    color: #333;
+}
