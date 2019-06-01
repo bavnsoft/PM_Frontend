@@ -7,93 +7,65 @@ import SideBar from '../../../SideBar';
 import swal from 'sweetalert';
 import config from '../../../../config.json';
 
+
 const url='http://localhost:4000/';
 class addtaskk extends Component {
   constructor(props){
     super(props);
     this.state = {
-       projectname:'',
-        description:'',
-        Hours:'', 
-         name: "",
-      shareholders: [{ name: "" }]
+      Name:'',
+      description:[{ description: "" }],
+      Hours:[{ Hours: "" }], 
+      name: "",
+      getproject:'',
+      project_id:'',
+      projectName: [{ name: "" }],
+      flag:false,
+      count:1,
+
     };
    }
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
 
 componentDidMount(){
-  
+     this.getproject();
     }
 
-TaskName(e){
-    this.setState({TaskName:e.target.value})
-  }
-
-  description(e){
-    this.setState({description:e.target.value})
-  }
-  Hours(e){
-    this.setState({Hours:e.target.value})
-  }
+ 
 
   submit(e){
-  console.log(this.state);
-  if(!this.state.TaskName.trim()){
-      $(".errorr").show();
-      $(".errorr h5").html("Please enter Your Task Name")
-      setTimeout(function(){ $(".errorr").hide();},3000);
-      return false;
-}
- console.log(this.state);
-  if(!this.state.description.trim()){
-      $(".errorrr").show();
-      $(".errorrr h5").html("Please enter Description")
-      setTimeout(function(){ $(".errorrr").hide();},3000);
-      return false;
+    /*
+      if(!this.state.description.trim()){
+          $(".errorr").show();
+          $(".errorr h5").html("Please enter Description")
+          setTimeout(function(){ $(".errorr").hide();},3000);
+               return false;
 
-}
- console.log(this.state);
-  if(!this.state.Hours.trim()){
-      $(".errorrrrr").show();
-      $(".errorrrrr h5").html("Please enter your Project Timeing")
-      setTimeout(function(){ $(".errorrrrr").hide();},3000);
-      return false;
-}
+      }
+     
+alert('ys')
+       // console.log(this.state);
+      if(!this.state.Hours.trim()){
+          $(".errorrr").show();
+          $(".errorrr h5").html("Please enter your Project Timeing")
+          setTimeout(function(){ $(".errorrr").hide();},3000);
+               return false;
+
+      }*/
 
 
 
+      const  {projectName,description,Hours,count} = this.state;
+          var user_id = localStorage.getItem('user_id');   
 
-    const  {projectname, TaskName,Hours} = this.state;
-
-
-let formData = new FormData();    //formdata object
-
-formData.append('projectname', projectname);   //append the values with key, value pair
-formData.append('TaskName', TaskName);
-formData.append('Hours', Hours);
-const configers = {     
-    headers: { 'content-type': 'multipart/form-data' }
-}
-
-
-      axios.post(config.LiveapiUrl+'project', {projectname, TaskName,Hours})
+  axios.post(config.LiveapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
           .then((result) => {
             //access the results here....
 
-            console.log(result.data.user_id);
             if(result.data.status==true){
                 swal(result.data.message);
-            this.props.history.replace('/Dashboad');
-
+                 this.props.history.replace('/Dashboard');
               
             }else{
                     swal(result.data.message);
@@ -104,6 +76,36 @@ const configers = {
 
   }
 
+
+      /*let formData = new FormData();    //formdata object
+
+      formData.append('projectname', projectname);   //append the values with key, value pair
+      formData.append('TaskName', TaskName);
+      formData.append('Hours', Hours);
+      const configers = {     
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+
+
+          axios.post(config.LocalapiUrl+'project', {projectname, TaskName,Hours})
+              .then((result) => {
+                //access the results here....
+
+                console.log(result.data.user_id);
+                if(result.data.status==true){
+                    swal(result.data.message);
+                this.props.history.replace('/Dashboad');
+
+                  
+                }else{
+                        swal(result.data.message);
+
+                }
+
+              });*/
+
+  
+
  
 
   handleNameChange = evt => {
@@ -111,12 +113,13 @@ const configers = {
   };
 
   handleShareholderNameChange = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
+    const newprojectName = this.state.projectName.map((shareholder, sidx) => {
       if (idx !== sidx) return shareholder;
       return { ...shareholder, name: evt.target.value };
     });
+    console.log(newprojectName)
 
-    this.setState({ shareholders: newShareholders });
+    this.setState({ projectName: newprojectName });
   };
 
 
@@ -124,24 +127,27 @@ const configers = {
 
 
 handleShareholderDescription = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-      if (idx !== sidx) return shareholder;
-      return { ...shareholder, description: evt.target.value };
+    const newprojectName = this.state.description.map((description, sidx) => {
+      if (idx !== sidx) return description;
+      return { ...description, description: evt.target.value };
     });
 
-    this.setState({ shareholders: newShareholders });
+
+
+    this.setState({ description: newprojectName });
   };
 
 
 
 
   handleShareholderHours = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-      if (idx !== sidx) return shareholder;
-      return { ...shareholder, hours: evt.target.value };
+    const newprojectName = this.state.Hours.map((Hours, sidx) => {
+  
+      if (idx !== sidx) return Hours;
+        return { ...Hours, Hours: evt.target.value };
     });
-
-    this.setState({ shareholders: newShareholders });
+    console.log(newprojectName,'')
+    this.setState({ Hours: newprojectName });
   };
 
 
@@ -150,63 +156,93 @@ handleShareholderDescription = idx => evt => {
 
 
   handleSubmit = evt => {
-    const { name, shareholders } = this.state;
-    alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
+    const { name, projectName } = this.state;
+    alert(`Incorporated: ${name} with ${projectName.length} projectName`);
   };
 
   handleAddShareholder = () => {
     this.setState({
-      shareholders: this.state.shareholders.concat([{ name: "" }])
+      projectName: this.state.projectName.concat([{ name: "" }]),
+      description: this.state.description.concat([{ description: "" }]),
+      Hours: this.state.Hours.concat([{ Hours: "" }]),
+      count:this.state.count + 1
     });
   };
 
   handleRemoveShareholder = idx => () => {
     this.setState({
-      shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
+      projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
+      count:this.state.count - 1
     });
   };
 
 
 
 
-  addtaskk(taskk){
+  getproject(){
 
-     axios.post(config.LiveapiUrl+'addtaskk', {taskk:this.state.shareholders,id:this.state.project_id})
+     axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
-
-            console.log(result.data.user_id);
-            if(result.data.status==true){
-                swal(result.data.message);
-               
-                
-            }else{
-                    swal(result.data.message);
-
-            }
+            console.log(result.data);
+              if(result.data.status==true){
+                   
+                   this.setState({getproject:result.data.result})
+                  
+              }
 
           });
   }
  
 
-  updatetaskk(id){
+  updateproject(id){
 
     this.setState({project_id:id})
 
   }
- gettaskk(id,taskk){
-    if(taskk){    
-       this.setState({project_id:id,shareholders:JSON.parse(taskk)});
+ getpro(id,project){
+    if(project){    
+       this.setState({project_id:id,projectName:JSON.parse(project)});
     }else{
-     this.setState({project_id:id,shareholders: [{ name: "" }]});
+     this.setState({project_id:id,projectName: [{ name: "" }]});
     }
   }
 
 
 
 
-
   render() {
+       const {getproject}=this.state;
+
+   
+
+        const  {projectName,description,Hours,count} = this.state;
+       
+        var filteredproject = projectName.filter(function (item) {return item.name });
+        var filtereddescription = description.filter(function (item) {return item.description});
+        var filteredHours = Hours.filter(function (item) {return item.Hours });
+        const HoursCalculate =Hours.map((item, sidx) => {
+             return item.Hours 
+        });
+
+        var arrayOfNumbers = HoursCalculate.map(Number);
+        const sum = arrayOfNumbers.reduce((partial_sum, a) => partial_sum + a,0); 
+        var disabled = [];
+        if(count!=filteredproject.length){
+         disabled.push({flag:'false'});
+        }else if(count!=filtereddescription.length){
+          disabled.push({flag:'false'});
+        }else if(count!=filteredHours.length){
+         disabled.push({flag:'false'});
+        }else if(sum != 8){
+          disabled.push({flag:'false'});
+        }else{
+          disabled.push({flag:'true'});
+        }
+
+       
+
+
     return (
       <div>
         <Header />
@@ -228,7 +264,7 @@ handleShareholderDescription = idx => evt => {
         
          <button
           type="button" className="btn btn-primary"
-          onClick={this.handleAddShareholder}
+          onClick={this.handleAddShareholder}disabled={disabled[0].flag!="false"}
           >
           ADD TASK
         </button>
@@ -247,40 +283,46 @@ handleShareholderDescription = idx => evt => {
 
         <h4>Today Task Detail</h4>
 
-        {this.state.shareholders.map((shareholder, idx) => (
+        {this.state.projectName.map((shareholder, idx) => (
           <div className="shareholder">
             <div className="row">
-                <div className="col-sm-4">
-            <input
-              type="text"
-              placeholder={`Task ${idx + 1} Name`}
-              value={shareholder.name}
-              
-
-
-              onChange={this.handleShareholderNameChange(idx)}
-             
-            />
+                <div className="col-sm-3">
+     
+            <select className="form-control" selectedValue={shareholder.Name} onChange={this.handleShareholderNameChange(idx)} style={{margin: "12px",height: "38px"}}>
+                <option value=''> Select Project</option>
+                {getproject && getproject.length > 0 && 
+                      getproject.map((item,index)=>(
+                        <option value={item._id}> {item.projectname}</option>
+                  
+                    ))}
+               </select>
+    
             </div>
-
+ 
             
             <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Description`}
-                  value={shareholder.description}
+                  value={this.state.description.description}
                   onChange={this.handleShareholderDescription(idx)}
+                 
                 />
+            <div className="errorr"><h5></h5></div>
+
             </div>
 
             <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Hours`}
-                  value={shareholder.hours}
+                  value={this.state.Hours.Hours}
                   onChange={this.handleShareholderHours(idx)}
                 />
+              <div className="errorrr"><h5></h5></div>
+
             </div>
+
 
             <div className="col-sm-2">
                 <button
@@ -297,7 +339,10 @@ handleShareholderDescription = idx => evt => {
        </div>
         ))}
 
-     <button type="button" className="btn btn-primary" onClick={(e)=>this.addtaskk(e)}>submit</button>
+     <button type="button" className="btn btn-primary" disabled={disabled[0].flag!="true"} onClick={(e)=>this.submit(e)}
+             
+
+     >submit</button>
 
       </form>
             
