@@ -10,5 +10,7 @@ button.btn.btn-primary.submit {
 }
 form button:disabled {
     background-color: #337ab7!important;
-    color: #333;
+    color: white;
+    margin-bottom: 27px;
+    overflow: hidden;
 }

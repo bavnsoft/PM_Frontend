@@ -59,7 +59,7 @@ alert('ys')
       const  {projectName,description,Hours,count} = this.state;
           var user_id = localStorage.getItem('user_id');   
 
-  axios.post(config.LiveapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
+  axios.post(config.LocalapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
           .then((result) => {
             //access the results here....
 
@@ -181,7 +181,7 @@ handleShareholderDescription = idx => evt => {
 
   getproject(){
 
-     axios.post(config.LiveapiUrl+'getproject')
+     axios.post(config.LocalapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
             console.log(result.data);
@@ -234,7 +234,7 @@ handleShareholderDescription = idx => evt => {
           disabled.push({flag:'false'});
         }else if(count!=filteredHours.length){
          disabled.push({flag:'false'});
-        }else if(sum != 8){
+        }else if(sum <= 8){
           disabled.push({flag:'false'});
         }else{
           disabled.push({flag:'true'});
@@ -263,7 +263,7 @@ handleShareholderDescription = idx => evt => {
               <div className="col-md-4">
         
          <button
-          type="button" className="btn btn-primary"
+          type="button" className="btn btn-primary-add"
           onClick={this.handleAddShareholder}disabled={disabled[0].flag!="false"}
           >
           ADD TASK
@@ -286,17 +286,14 @@ handleShareholderDescription = idx => evt => {
         {this.state.projectName.map((shareholder, idx) => (
           <div className="shareholder">
             <div className="row">
-                <div className="col-sm-3">
-     
-            <select className="form-control" selectedValue={shareholder.Name} onChange={this.handleShareholderNameChange(idx)} style={{margin: "12px",height: "38px"}}>
+               <div className="col-sm-3">
+            <select className="form-control-select" selectedValue={shareholder.Name} onChange={this.handleShareholderNameChange(idx)}>
                 <option value=''> Select Project</option>
                 {getproject && getproject.length > 0 && 
                       getproject.map((item,index)=>(
-                        <option value={item._id}> {item.projectname}</option>
-                  
+                        <option value={item._id}> {item.projectname}</option>                
                     ))}
-               </select>
-    
+               </select>   
             </div>
  
             
@@ -305,34 +302,26 @@ handleShareholderDescription = idx => evt => {
                   type="text"
                   placeholder={`Description`}
                   value={this.state.description.description}
-                  onChange={this.handleShareholderDescription(idx)}
-                 
-                />
-            <div className="errorr"><h5></h5></div>
-
-            </div>
+                  onChange={this.handleShareholderDescription(idx)}/>
+                  </div>
 
             <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Hours`}
                   value={this.state.Hours.Hours}
-                  onChange={this.handleShareholderHours(idx)}
-                />
-              <div className="errorrr"><h5></h5></div>
-
-            </div>
+                  onChange={this.handleShareholderHours(idx)}/>
+                 </div>
 
 
             <div className="col-sm-2">
                 <button
-                  type="button" className="btn btn-danger"
-                  onClick={this.handleRemoveShareholder(idx)}
-                  className="small">
-                
-              <i className="fa fa-times"></i>
-               </button>
-              </div>
+                type="button" className="btn btn-danger"
+                onClick={this.handleRemoveShareholder(idx)}
+                className="small">        
+                <i className="fa fa-times"></i>
+                </button>
+                </div>
 
 
           </div>

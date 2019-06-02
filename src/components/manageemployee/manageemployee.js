@@ -42,7 +42,7 @@ getEmp(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getempolyes')
+    axios.post(config.LocalapiUrl+'getempolyes')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -73,7 +73,7 @@ Delete(employeeid){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(config.LiveapiUrl+'deleteempolyes', {employeeid:employeeid})
+               axios.post(config.LocalapiUrl+'deleteempolyes', {employeeid:employeeid})
                   .then((result) => {
                    console.log(result.data.message);
 
@@ -125,7 +125,7 @@ Delete(employeeid){
           <h3 className="box-title">Manage Employee</h3>                         
         </div>
         <div className="col-xs-2">
-        <button type="button"className="btn btn-primary"><Link to ='/addemployee'>Add Employee</Link></button>
+        <button type="button"className="btn btn-primary-emp"><Link to ='/addemployee'>Add Employee</Link></button>
         </div>
 </div>
 </div>

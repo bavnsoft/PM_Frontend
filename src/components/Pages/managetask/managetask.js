@@ -116,18 +116,12 @@ timeDifference(current, previous) {
     this.setState({ show: false });
      $("#myModal").removeClass("modal-backdrop fade in");
        this.setState({loder:true});
-
     var user_id = localStorage.getItem('user_id');   
-
   const  {Timein,timeout,hours,totaltimeing} = this.state;
-
-
       axios.post(url+'viewtask', {Timein,timeout,hours,totaltimeing,user_id})
           .then((result) => {
             //access the results here....
-
             console.log(result.data);
-
             if(result.data.status==true){
                 console.log(result.data.message);
                // this.featchTasks();
@@ -136,12 +130,9 @@ timeDifference(current, previous) {
             }else{
                     console.log(result.data.message);
                      // this.setState({loder:false});
-
                     
             }
-
           });
-
 }*/
 
 

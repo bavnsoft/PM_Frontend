@@ -46,7 +46,7 @@ getproj(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getproject')
+    axios.post(config.LocalapiUrl+'getproject')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -83,9 +83,9 @@ addst(){
 
   addstatus(status){
 
-     axios.post(config.LiveapiUrl+'addstatus', {status:status,id:this.state.project_id})
+     axios.post(config.LocalapiUrl+'addstatus', {status:status,id:this.state.project_id})
           .then((result) => {
-            //access the results here.....
+            //access the results here....
 
             console.log(result.data.user_id);
             if(result.data.status==true){
@@ -111,7 +111,7 @@ addst(){
 
   addmilestone(milestone){
 
-     axios.post(config.LiveapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
+     axios.post(config.LocalapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 
@@ -381,7 +381,7 @@ handleShareholderDetail = idx => evt => {
                                     <h3 className="box-title">Manage Project</h3>
                                 </div>
                                           <div className="col-xs-2">
-                <button type="button"className="btn btn-primary"><Link to ='/addproject'>Add Project</Link></button>
+                <button type="button"className="btn btn-primary-Project"><Link to ='/addproject'>Add Project</Link></button>
                  </div>               
                                 </div>
                        </div>

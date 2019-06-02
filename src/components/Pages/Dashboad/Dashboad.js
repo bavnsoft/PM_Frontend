@@ -10,10 +10,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Link} from 'react-router-dom';
-import config from '../../../config.json';
 
 
 import moment from 'moment';
+import config from '../../../config.json';
 
 
 
@@ -131,7 +131,7 @@ timeout(e){
       icon: "success",
   });
 
-                axios.post(config.LiveapiUrl+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
+                axios.post(config.LocalapiUrl+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
                     .then((result) => {
                       //access the results here....
 
@@ -153,8 +153,8 @@ timeout(e){
                     });
                 
             } else {
-         //  swal("Your imaginary file is safe!..");
-                     }
+           //swal("Your imaginary file is safe!");    
+                   }
           });
  
  }/*this.setState({ show: false });
@@ -191,10 +191,10 @@ timeout(e){
 
     var user_id = localStorage.getItem('user_id');   
 
-  const  {discription} = this.state;
+     const  {discription} = this.state;
 
 
-      axios.post(config.LiveapiUrl+'addtask', {discription,user_id})
+      axios.post(config.LocalapiUrl+'addtask', {discription,user_id})
           .then((result) => {
             //access the results here....
 
@@ -223,7 +223,7 @@ timeout(e){
    // this.setState({loder:true});
 
      var user_id = localStorage.getItem('user_id'); 
-     axios.post(config.LiveapiUrl+'featchTask', {user_id})
+     axios.post(config.LocalapiUrl+'featchTask', {user_id})
           .then((result) => {
             //access the results here....
 
@@ -246,7 +246,7 @@ timeout(e){
   render() {
 
      const {timeout,loder,taskstatus,TimeOut}=this.state;
-     console.log(taskstatus,'taskstatustaskstatustaskstatus');
+     console.log(taskstatus);
   
     return (
            <div>
@@ -266,7 +266,7 @@ timeout(e){
                                     <h3 className="box-title">Dashboard</h3>
                                 </div>  
 
-             <button type="button" className="btn btn-primary"><Link to="/addtaskk">Add Task</Link></button>
+             <button type="button" className="btn btn-primary-das"><Link to="/addtaskk">Add Task</Link></button>
 
               <div className="col-xs-2">               
              
@@ -312,7 +312,7 @@ timeout(e){
                                          <button type="button" className="btn btn-primary"onClick={(e)=>this.addtaskk(e)} disabled={TimeOut}>Time IN</button>
                                         </div>
                                         <div className="col-md-2">
-                                         <button type="button" className="btn btn-primary"onClick={(e)=>this.timeout(e)} disabled={taskstatus!="Approved" }>Time Out</button>
+                                         <button type="button" className="btn btn-primary-tim"onClick={(e)=>this.timeout(e)} disabled={taskstatus!="Approved" }>Time Out</button>
                                         </div><br/><br/><br/><br/><br/>   
                                   </div>
                                 </div>
