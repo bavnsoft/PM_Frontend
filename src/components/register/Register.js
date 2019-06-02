@@ -68,7 +68,7 @@ console.log(this.state);
 }
 
    const { username, email, password } = this.state;
-   axios.post(config.LiveapiUrl+'signup', { username, email, password})
+   axios.post(config.LocalapiUrl+'signup', { username, email, password})
           .then((result) => {
             //access the results here....
 
@@ -78,6 +78,8 @@ console.log(this.state);
                 
                 swal(result.data.message)
                 swal("Good job!", "You are Register!", "success");
+               this.props.history.replace('/login');
+
             }else{
 
             }
@@ -122,13 +124,13 @@ console.log(this.state);
               <div className="col-xs-8">
                 <div className="checkbox icheck">
                   <label>
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox"/>I agree to the <a href="#">terms</a>
+                    <input type="checkbox"/>I agree to the <a href="#">terms</a>
                   </label>
                 </div>
               </div>
               {/* /.col */}
               <div className="col-xs-4">
-                <button type="button" className="btn btn-primary btn-block btn-flat" onClick={(e)=>this.signup(e)}>Register</button>
+                <button type="button" className="btn btn-primary-register btn-block btn-flat" onClick={(e)=>this.signup(e)}>Register</button>
               </div>
               {/* /.col */}
             </div>

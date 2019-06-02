@@ -139,7 +139,10 @@ const configers = {
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(config.LiveapiUrl+'project', formData, configers)
+
+
+
+      axios.post(config.LocalapiUrl+'project', formData, configers)
           .then((result) => {
            
 
@@ -205,7 +208,7 @@ const configers = {
                   <div className="form-group">
                     
                      <label>Start Date</label><br/>
-                           <DatePicker className="form-control"
+                           <DatePicker className="form-control-start"
                                   selected={this.state.startDate}
                                   onChange={this.handleChange}
                                 />
@@ -213,7 +216,7 @@ const configers = {
 
                 <div className="form-group">
                    <label>End Date</label><br/>
-                    <DatePicker className="form-control"
+                    <DatePicker className="form-control-end"
                                   selected={this.state.endDate}
                                   onChange={this.handleChange}
                                 />

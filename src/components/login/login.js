@@ -52,7 +52,7 @@ login(e){
 }
 
  const { email, password } = this.state;
-   axios.post(config.LiveapiUrl+'login', {email, password})
+   axios.post(config.LocalapiUrl+'login', {email, password})
           .then((result) => {
             //access the results here....
 
@@ -60,7 +60,7 @@ login(e){
 
             if(result.data.status==true){
                 
-                console.log(result.data);
+                //console.log(result.data);
 
                 this.props.history.replace('/');
                 localStorage.setItem('user_id',result.data.user_id);
@@ -89,7 +89,7 @@ login(e){
           <a href="../../index2.html"><b>Sign</b>IN</a>
         </div>       
         <div className="login-box-body">
-          <p className="login-box-msg">Sign in to start your session</p>
+          <p className="login-box-msg">Sign In To Start Your Session</p>
           <form>
             <div className="form-group has-feedback">
               <input type="email" className="form-control" placeholder="Email"onChange={(e)=>this.email(e)} />
@@ -109,21 +109,21 @@ login(e){
               <div className="col-xs-8">
                 <div className="checkbox icheck">
                   <label>
-                   &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"/>Remember Me
+                   <input type="checkbox"/>Remember Me
                   </label>
                 </div>
               </div>
               {/* /.col */}
               <div className="col-xs-4">
-                <button type="button" className="btn btn-primary btn-block btn-flat"onClick={(e)=>this.login(e)}>Sign In</button>
+                <button type="button" className="btn btn-primary-submit btn-block btn-flat"onClick={(e)=>this.login(e)}>Sign In</button>
               </div>
               {/* /.col */}
             </div>
           </form>
           
           {/* /.social-auth-links */}
-          <a href="#">I forgot my password</a><br />
-          <a href="/register" className="text-center">Register a new membership</a>
+           {/* <a href="#">I forgot my password</a><br />
+          <a href="/register" className="text-center">Register a new membership</a> */}
         </div>
         {/* /.login-box-body */}
       </div>
