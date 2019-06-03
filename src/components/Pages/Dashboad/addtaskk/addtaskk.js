@@ -327,6 +327,7 @@ handleShareholderDescription = idx => evt => {
           </div>
        </div>
         ))}
+         <h3> Total Hours: {sum} </h3>
 
      <button type="button" className="btn btn-primary" disabled={disabled[0].flag!="true"} onClick={(e)=>this.submit(e)}
              
