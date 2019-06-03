@@ -119,7 +119,7 @@ ApprovedDisapprovedCancel(emp_id,status){
                 <td>{item.EmployeeName}</td>
                 <td>{item.typeofDay}</td>
                 <td>{item.typeofleave}</td>
-                <td>{item.date}</td>
+                <td>{item.startDate}</td>
                 <td>{item.Description}</td>
                 <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApprovedDisapprovedCancel(item._id,'Approved')}>Approved <i className="fa fa-thumbs-up"></i></button></td>
                 <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApprovedDisapprovedCancel(item._id,'Disapproved')}>Disapproved <i className="fa fa-thumbs-down"></i></button></td>
