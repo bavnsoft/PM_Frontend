@@ -5832,15 +5832,7 @@ button.btn.btn-primary-submit.btn-block.btn-flat {
     margin: 19px 0px 50px -29px;
     border-radius: 3px;
     height: 34px;
-}
-@media screen and (max-width: 480px){
-
-button.btn.btn-primary-submit.btn-block.btn-flat {
-    margin: 19px 0px 50px -29px;
-    border-radius: 3px;
-    height: 34px;
-}
-}
+}zz
 
 
 button.btn.btn-primary-register.btn-block.btn-flat {
@@ -5861,7 +5853,7 @@ button.btn.btn-primary-register.btn-block.btn-flat {
   button.btn.btn-primary-submit.btn-block.btn-flat {
     margin: 19px 0px 50px -36px;
     border-radius: 3px;
-    height: 34px;
+    height: 87px;
 }
 }
 input.form-control-date {
