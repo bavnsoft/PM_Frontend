@@ -29,13 +29,13 @@ import App from './App';
 
 ReactDOM.render((
 <Router>
-		<div>
-			<Route exact path = "/Dashboad" component = {Dashboad} />
-			<Route path = "/" component = {login} />
-			<Route path = "/register" component = {register} />
-			<Route path = "/Dashboard" component = {Dashboad} />
-		    <Route path = "/Employees" component = {Employees} />
-      		<Route path = "/department" component = {department} />           
+            <div>
+                  <Route exact path = "/" component = {Dashboad} />
+                  <Route path = "/login" component = {login} />
+                  <Route path = "/register" component = {register} />
+                  <Route path = "/Dashboard" component = {Dashboad} />
+                <Route path = "/Employees" component = {Employees} />
+                  <Route path = "/department" component = {department} />           
             <Route path = "/manageproject" component = {manageproject} />
             <Route path = "/addproject" component = {addproject} />
             <Route path = "/addemployee" component = {addemployee} />
@@ -49,6 +49,6 @@ ReactDOM.render((
             <Route path = "/addtaskk" component = {addtaskk} />
 
 
-		</div>
+            </div>
 </Router>
 ), document.getElementById('root'))
