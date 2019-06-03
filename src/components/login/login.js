@@ -63,7 +63,7 @@ login(e){
                 //console.log(result.data);
 
                 localStorage.setItem('user_id',result.data.user_id);
-                                this.props.history.replace('/');
+                                this.props.history.replace('/Dashboard');
 
             //localStorage.setItem('user_id'JSON,stringfy(user_id));
                 
