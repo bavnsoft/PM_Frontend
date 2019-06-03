@@ -227,7 +227,7 @@ const configers = {
  
                        <div className="form-group">
                           <label>Date</label><br/>
-                           <DatePicker className="form-control"
+                           <DatePicker className="form-control-date"
                                   selected={this.state.startDate}
                                   onChange={this.handleChange}
                                 />

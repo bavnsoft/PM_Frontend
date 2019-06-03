@@ -34,7 +34,7 @@ class manageleave extends Component {
 getleave(){
   this.setState({loder:true});
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LocalapiUrl+'getleaves')
+    axios.post(config.LiveapiUrl+'getleaves')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -59,7 +59,7 @@ ApprovedDisapprovedCancel(emp_id,status){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(config.LocalapiUrl+'ApprovedDisapprovedCancelLeave',{emp_id:emp_id,status:status})
+                 axios.post(config.LiveapiUrl+'ApprovedDisapprovedCancelLeave',{emp_id:emp_id,status:status})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){
