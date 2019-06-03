@@ -181,7 +181,7 @@ handleShareholderDescription = idx => evt => {
 
   getproject(){
 
-     axios.post(config.LiveapiUrl+'getproject')
+     axios.post('https://pmbackends.herokuapp.com/getproject')
           .then((result) => {
             //access the results here.....
             console.log(result.data);
