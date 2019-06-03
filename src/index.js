@@ -30,7 +30,7 @@ import App from './App';
 ReactDOM.render((
 <Router>
             <div>
-                  <Route exact path = "/" component = {Dashboad} />
+                  <Route exact path = "/" component = {login} />
                   <Route path = "/login" component = {login} />
                   <Route path = "/register" component = {register} />
                   <Route path = "/Dashboard" component = {Dashboad} />
