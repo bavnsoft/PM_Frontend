@@ -62,8 +62,9 @@ login(e){
                 
                 //console.log(result.data);
 
-                this.props.history.replace('/');
                 localStorage.setItem('user_id',result.data.user_id);
+                                this.props.history.replace('/');
+
             //localStorage.setItem('user_id'JSON,stringfy(user_id));
                 
                 //swal(result.data.message);
@@ -107,11 +108,9 @@ login(e){
             </div>
             <div className="row">
               <div className="col-xs-8">
-                <div className="checkbox icheck">
-                  <label>
-                   <input type="checkbox"/>Remember Me
-                  </label>
-                </div>
+                
+
+
               </div>
               {/* /.col */}
               <div className="col-xs-4">

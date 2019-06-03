@@ -122,11 +122,7 @@ console.log(this.state);
            
             <div className="row">
               <div className="col-xs-8">
-                <div className="checkbox icheck">
-                  <label>
-                    <input type="checkbox"/>I agree to the <a href="#">terms</a>
-                  </label>
-                </div>
+                
               </div>
               {/* /.col */}
               <div className="col-xs-4">
