@@ -181,7 +181,7 @@ handleShareholderDescription = idx => evt => {
 
   getproject(){
 
-     axios.post('https://pmbackends.herokuapp.com/getproject')
+     axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
             console.log(result.data);
@@ -327,8 +327,7 @@ handleShareholderDescription = idx => evt => {
           </div>
        </div>
         ))}
-         <h3> Total Hours: {sum} </h3>
-
+        <h3> Total Hours: {sum} </h3>
      <button type="button" className="btn btn-primary" disabled={disabled[0].flag!="true"} onClick={(e)=>this.submit(e)}
              
 

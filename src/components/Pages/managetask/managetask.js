@@ -44,6 +44,7 @@ class managetask extends Component {
                         discription:usertask[i].discription,
                         status:usertask[i].status,
                         timeout:usertask[i].timeout,
+                        _id:usertask[i]._id,
                         user_id:usertask[i].user_id ? usertask[i].user_id._id : null,
                         employeename:usertask[i].user_id ? usertask[i].user_id.employeename : 'N/A',
                        })
@@ -135,12 +136,28 @@ timeDifference(current, previous) {
           });
 }*/
 
+getEmptask(){
+    this.setState({loder:true});
 
+   var user_id = localStorage.getItem('user_id'); 
+    axios.post(config.LiveapiUrl+'getempolyestask')
+          .then((result) => {
+            //access the results here....
+                if(result.data.status==true){
+                    this.setState({employee:result.data.result})
+                    this.setState({loder:false});
+
+
+                }
+           
+
+          });
+}
 
 
   render() {
    const {userTask,loder,TimeIN,timeout,hours}=this.state;
-  
+    console.log(userTask);
     return (
 
 
@@ -188,7 +205,7 @@ timeDifference(current, previous) {
                      <td>{this.timeDifference(item.date,item.timeout)}</td>
                        <td colSpan="1.5"> <button type="button" className="btn btn-primary" onClick={()=>this.TaskApproved(item.user_id)}>Approved <i className="fa fa-thumbs-up"></i></button></td>
                        <td colSpan="1.5"> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#myModal" onClick={()=>this.viewtask(item.date,item.timeout)}>View Task <i className="fa fa-eye"></i></button></td>
-                       <td colSpan="1.5"> <button type="button" className="btn btn-primary"><Link to ='/edittask'>Edit Task <i className="fa fa-edit"></i></Link></button></td>
+                       <td colSpan="1.5"> <button type="button" className="btn btn-primary"><Link to ={'/edittask/'+item._id}>Edit Task <i className="fa fa-edit"></i></Link></button></td>
                
                     </tr>
 

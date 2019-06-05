@@ -131,7 +131,7 @@ let formData = new FormData();    //formdata object
 formData.append('EmployeeName', EmployeeName);   //append the values with key, value pair
 formData.append('typeofDay', typeofDay);
 formData.append('typeofleave', typeofleave);
-formData.append('date', startDate);
+formData.append('startDate', startDate);
 formData.append('Description', Description);
 formData.append('user_id', user_id);
 

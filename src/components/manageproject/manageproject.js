@@ -6,6 +6,7 @@ import SideBar from '../SideBar';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import swal from 'sweetalert';
+import moment from 'moment';
 import StarRatingComponent from 'react-star-rating-component';
 import config from '../../config.json';
 
@@ -20,7 +21,7 @@ class manageproject extends Component {
       Complete:'',
       Cancel:'',
       project_id:'',
-            rating: 1
+      rating: 1
 
     };
    }
@@ -411,8 +412,8 @@ handleShareholderDetail = idx => evt => {
               <tr>              
                 <td>{item.serialno}</td>
                   <td>{item.projectname}</td>
-                    <td>{item.startdate}</td>
-                      <td>{item.enddate}</td>
+                    <td>{moment(item.startDate).format('LL')}</td>
+                      <td>{moment(item.endDate).format('LL')}</td>
                         <td><img src={item.upload } style={{height:"50px",width:"50px"}}/></td>
                 <td> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#modal-defaults" onClick={(e)=>this.getMilestone(item._id,item.milestone)}>Add Milestone</button></td>
                 <td> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modal-default" onClick={(e)=>this.get_project_id(item._id)}>Status </button></td>

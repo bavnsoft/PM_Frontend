@@ -131,6 +131,7 @@ const configers = {
     headers: { 'content-type': 'multipart/form-data' }
 }
 
+
       axios.post(config.LiveapiUrl+'editempolyes', formData, configers)
       //console.log(req.body)
           .then((result) => {
@@ -197,8 +198,7 @@ const configers = {
                   </div>
 
 
-                </div
- >               {/* /.box-body */}
+                </div>        
                 <div className="box-footer">
                   <button type="button" className="btn btn-primary" onClick={(e)=>this.save(e)}>Update</button>
                 </div>

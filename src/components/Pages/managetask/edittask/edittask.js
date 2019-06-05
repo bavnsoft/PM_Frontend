@@ -7,103 +7,162 @@ import SideBar from '../../../SideBar';
 import swal from 'sweetalert';
 import config from '../../../../config.json';
 
-const url='http://localhost:4000/';
 
+const url='http://localhost:4000/';
 class edittask extends Component {
   constructor(props){
-  super(props);
+    super(props);
     this.state = {
-      projectname:'',
-        TaskName:'',
-        TaskDetail:'',
-        Hours:'',
-        upload:'', 
-         name: "",
-      shareholders: [{ name: "" }]
+      Name:'',
+      description:[{ description: "" }],
+      Hours:[{ Hours: "" }], 
+      name: "",
+      getproject:'',
+      project_id:'',
+      projectName: [{ name: "" }],
+      flag:false,
+      count:1,
+
     };
- }
+   }
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
 
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
 
- componentDidMount(){
-  
+componentDidMount(){
+     var url = new URL(window.location.href);
+         
+     axios.post(config.LiveapiUrl+'GettaskById', {id:url.pathname.split('/')[2]})
+          .then((result) => {
+            //access the results here....
+            console.log(result)
+                if(result.data.status==true){
+                  if(result.data.result.length!= 0){
+
+              
+                    this.setState({
+                    //projectName:JSON.parse(result.data.result[0].project_id),
+
+                      projectName:(result.data.result[0].project_id),
+                      description:(result.data.result[0].description),
+                      Hours:(result.data.result[0].Hours),
+                      id:result.data.result[0]._id,
+                    });
+                  }
+
+                }
+           
+
+          });
     }
 
-projectname(e){
-    this.setState({projectname:e.target.value})
+ projectName(e){
+    this.setState({projectName:e.target.value})
   }
 
-  TaskName(e){
-    this.setState({TaskName:e.target.value})
+  description(e){
+    this.setState({description:e.target.value})
   }
- TaskDetail(e){
-    this.setState({TaskDetail:e.target.value})
+ hours(e){
+    this.setState({hours:e.target.value})
   }
-  Hours(e){
-    this.setState({Hours:e.target.value})
-  }
-upload(e){
-    this.setState({upload:e.target.value})
-  }
-  save(e){
-  console.log(this.state);
-  if(!this.state.projectname.trim()){
-      $(".errorr").show();
-      $(".errorr h5").html("Please enter Your Project Name")
-      setTimeout(function(){ $(".errorr").hide();},3000);
-      return false;
-}
- console.log(this.state);
-  if(!this.state.TaskName.trim()){
-      $(".errorrr").show();
-      $(".errorrr h5").html("Please enter your Task Name")
-      setTimeout(function(){ $(".errorrr").hide();},3000);
-      return false;
 
-}
+  submit(e){
+    /*
+      if(!this.state.description.trim()){
+          $(".errorr").show();
+          $(".errorr h5").html("Please enter Description")
+          setTimeout(function(){ $(".errorr").hide();},3000);
+               return false;
 
- console.log(this.state);
-  if(!this.state.TaskDetail.trim()){
-      $(".errorrrr").show();
-      $(".errorrrr h5").html("Please enter your Task Detail")
-      setTimeout(function(){ $(".errorrrr").hide();},3000);
-      return false;
-}
+      }
+     
+alert('ys')
+       // console.log(this.state);
+      if(!this.state.Hours.trim()){
+          $(".errorrr").show();
+          $(".errorrr h5").html("Please enter your Project Timeing")
+          setTimeout(function(){ $(".errorrr").hide();},3000);
+               return false;
 
- console.log(this.state);
-  if(!this.state.Hours.trim()){
-      $(".errorrrrr").show();
-      $(".errorrrrr h5").html("Please enter your Project Timeing")
-      setTimeout(function(){ $(".errorrrrr").hide();},3000);
-      return false;
-}
-console.log(this.state);
-  if(!this.state.upload.trim()){
-      $(".errorrrrrr").show();
-      $(".errorrrrrr h5").html("Please upload Documents")
-      setTimeout(function(){ $(".errorrrrrr").hide();},3000);
-
-}
+      }*/
 
 
+/*
+      const  {projectName,description,Hours,count} = this.state;
+          var user_id = localStorage.getItem('user_id');   
 
-
-    const  {projectname, TaskName ,TaskDetail,Hours,upload} = this.state;
-
-      axios.post(config.LiveapiUrl+'project', {projectname, TaskName,TaskDetail,Hours,upload})
+  axios.post(config.LocalapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
           .then((result) => {
             //access the results here....
 
-            console.log(result.data.user_id);
             if(result.data.status==true){
                 swal(result.data.message);
+                 this.props.history.replace('/Dashboard');
+              
+            }else{
+                    swal(result.data.message);
+
+            }
+
+          });
+
+  }*/
+
+
+      /*let formData = new FormData();    //formdata object
+
+      formData.append('projectname', projectname);   //append the values with key, value pair
+      formData.append('TaskName', TaskName);
+      formData.append('Hours', Hours);
+      const configers = {     
+        headers: { 'content-type': 'multipart/form-data' }
+      }
+
+
+          axios.post(config.LocalapiUrl+'project', {projectname, TaskName,Hours})
+              .then((result) => {
+                //access the results here....
+
+                console.log(result.data.user_id);
+                if(result.data.status==true){
+                    swal(result.data.message);
+                this.props.history.replace('/Dashboad');
+
+                  
+                }else{
+                        swal(result.data.message);
+
+                }
+
+              });*/
+
+  
+
+ 
+    const  {projectName, description ,hours , id} = this.state;
+
+
+let formData = new FormData();    //formdata object
+
+formData.append('projectName', projectName);   //append the values with key, value pair
+formData.append('description', description);
+formData.append('hours', hours);
+formData.append('id', id);
+
+const configers = {     
+    headers: { 'content-type': 'multipart/form-data' }
+}
+
+
+      axios.post(config.LiveapiUrl+'editemptask', formData, configers)
+      //console.log(req.body)
+          .then((result) => {
+           
+
+            if(result.data.status==true){
+                swal(result.data.message);
+                
+                this.props.history.replace('/managetask');
               
             }else{
                     swal(result.data.message);
@@ -114,42 +173,140 @@ console.log(this.state);
 
   }
 
- 
-
   handleNameChange = evt => {
     this.setState({ name: evt.target.value });
   };
 
   handleShareholderNameChange = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
+    const newprojectName = this.state.projectName.map((shareholder, sidx) => {
       if (idx !== sidx) return shareholder;
       return { ...shareholder, name: evt.target.value };
     });
+    console.log(newprojectName)
 
-    this.setState({ shareholders: newShareholders });
+    this.setState({ projectName: newprojectName });
   };
 
+
+
+
+
+handleShareholderDescription = idx => evt => {
+    const newprojectName = this.state.description.map((description, sidx) => {
+      if (idx !== sidx) return description;
+      return { ...description, description: evt.target.value };
+    });
+
+
+
+    this.setState({ description: newprojectName });
+  };
+
+
+
+
+  handleShareholderHours = idx => evt => {
+    const newprojectName = this.state.Hours.map((Hours, sidx) => {
+  
+      if (idx !== sidx) return Hours;
+        return { ...Hours, Hours: evt.target.value };
+    });
+    console.log(newprojectName,'')
+    this.setState({ Hours: newprojectName });
+  };
+
+
+
+
+
+
   handleSubmit = evt => {
-    const { name, shareholders } = this.state;
-    alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
+    const { name, projectName } = this.state;
+    alert(`Incorporated: ${name} with ${projectName.length} projectName`);
   };
 
   handleAddShareholder = () => {
     this.setState({
-      shareholders: this.state.shareholders.concat([{ name: "" }])
+      projectName: this.state.projectName.concat([{ name: "" }]),
+      description: this.state.description.concat([{ description: "" }]),
+      Hours: this.state.Hours.concat([{ Hours: "" }]),
+      count:this.state.count + 1
     });
   };
 
   handleRemoveShareholder = idx => () => {
     this.setState({
-      shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
+      projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
+      count:this.state.count - 1
     });
   };
 
 
 
+
+  getproject(){
+
+     axios.post(config.LiveapiUrl+'getproject')
+          .then((result) => {
+            //access the results here.....
+            console.log(result.data);
+              if(result.data.status==true){
+                   
+                   this.setState({getproject:result.data.result})
+                  
+              }
+
+          });
+  }
+ 
+
+  updateproject(id){
+
+    this.setState({project_id:id})
+
+  }
+ getpro(id,project){
+    if(project){    
+       this.setState({project_id:id,projectName:JSON.parse(project)});
+    }else{
+     this.setState({project_id:id,projectName: [{ name: "" }]});
+    }
+  }
+
+
+
   render() {
+       const {getproject}=this.state;
+
+   
+
+        const  {projectName,description,Hours,count} = this.state;
        
+        var filteredproject = projectName.filter(function (item) {return item.name });
+        var filtereddescription = description.filter(function (item) {return item.description});
+        var filteredHours = Hours.filter(function (item) {return item.Hours });
+        const HoursCalculate =Hours.map((item, sidx) => {
+             return item.Hours 
+        });
+
+        var arrayOfNumbers = HoursCalculate.map(Number);
+        const sum = arrayOfNumbers.reduce((partial_sum, a) => partial_sum + a,0); 
+        var disabled = [];
+        if(count!=filteredproject.length){
+         disabled.push({flag:'false'});
+        }else if(count!=filtereddescription.length){
+          disabled.push({flag:'false'});
+        }else if(count!=filteredHours.length){
+         disabled.push({flag:'false'});
+        }else if(sum <= 8){
+          disabled.push({flag:'false'});
+        }else{
+          disabled.push({flag:'true'});
+        }
+
+       
+
+
     return (
       <div>
         <Header />
@@ -158,22 +315,22 @@ console.log(this.state);
              <section className="content">
         <div className="row">
           {/* left column */}
-          <div className="col-md-6">
+          <div className="col-md-8">
             {/* general form elements */}
             <div className="box box-primary">
               <div className="box-header with-border">
                 <div className="row">
                 <div className="col-md-8">
 
-               <h3 className="box-title"><b>Task Detail</b></h3>
+               <h3 className="box-title"><b>EDIT TASK DETAIL</b></h3>
                </div>
               <div className="col-md-4">
         
          <button
-          type="button" className="btn btn-primary"
-          onClick={this.handleAddShareholder}
+          type="button" className="btn btn-primary-add"
+          onClick={this.handleAddShareholder}disabled={disabled[0].flag!="false"}
           >
-          ADD NEW
+          ADD TASK
         </button>
              </div>
 
@@ -181,58 +338,64 @@ console.log(this.state);
               {/* /.box-header */}
               {/* form start */}
                <form onSubmit={this.handleSubmit}>
-        <input
+       {/* <input
           type="text"
           placeholder="Bavn Soft"
           value={this.state.name}
           onChange={this.handleNameChange}
-        />
+        />*/}
 
         <h4>Today Task Detail</h4>
 
-        {this.state.shareholders.map((shareholder, idx) => (
+        {this.state.projectName.map((shareholder, idx) => (
           <div className="shareholder">
             <div className="row">
-                <div className="col-sm-5">
-            <input
-              type="text"
-              placeholder={`Task ${idx + 1} Name`}
-              value={shareholder.name}
-              
-
-
-              onChange={this.handleShareholderNameChange(idx)}
-            />
+               <div className="col-sm-3">
+            <select className="form-control-select" selectedValue={shareholder.Name} onChange={this.handleShareholderNameChange(idx)}>
+                <option value=''> Select Project</option>
+                {getproject && getproject.length > 0 && 
+                      getproject.map((item,index)=>(
+                        <option value={item._id}> {item.projectname}</option>                
+                    ))}
+               </select>   
             </div>
-
-
-            <div className="col-sm-5">
+ 
+            
+            <div className="col-sm-3">
                 <input
                   type="text"
-                  placeholder={`Total hours`}
-                  value={shareholder.hours}
-                  onChange={this.handleShareholderNameChange(idx)}
-                />
-            </div>
+                  placeholder={`Description`}
+                  value={this.state.description.description}
+                  onChange={this.handleShareholderDescription(idx)}/>
+                  </div>
+
+            <div className="col-sm-3">
+                <input
+                  type="text"
+                  placeholder={`Hours`}
+                  value={this.state.Hours.Hours}
+                  onChange={this.handleShareholderHours(idx)}/>
+                 </div>
+
 
             <div className="col-sm-2">
                 <button
-                  type="button" className="btn btn-danger"
-                  onClick={this.handleRemoveShareholder(idx)}
-                  className="small">
-                
-              <i className="fa fa-times"></i>
-
-               </button>
-              </div>
+                type="button" className="btn btn-danger"
+                onClick={this.handleRemoveShareholder(idx)}
+                className="small">        
+                <i className="fa fa-times"></i>
+                </button>
+                </div>
 
 
           </div>
        </div>
         ))}
-     <button type="button" className="btn btn-primary" onClick={(e)=>this.save(e)}>Total Hours</button>
-
-     <button type="button" className="btn btn-primary" onClick={(e)=>this.save(e)}>Save</button>
+        <h3> Total Hours: {sum} </h3>
+    {/* <button type="button" className="btn btn-primary" disabled={disabled[0].flag!="true"} onClick={(e)=>this.submit(e)}*
+  
+     >submit</button>*/}
+         <button type="button" className="btn btn-primary" onClick={(e)=>this.submit(e)}>Update</button>
 
       </form>
             
@@ -240,7 +403,6 @@ console.log(this.state);
           </div></div></section>
   </div>
   </div>
-
     );
   }
 }

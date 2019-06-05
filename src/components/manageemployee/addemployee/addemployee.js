@@ -10,6 +10,8 @@ import Autocomplete from  'react-autocomplete';
 import Autosuggest from 'react-autosuggest';
 import config from '../../../config.json';
 
+
+
 // Imagine you have a list of languages that you'd like to autosuggest.
 const languages = [
   {
@@ -328,7 +330,7 @@ const configers = {
 
                 <div className="form-group">
                     <label htmlFor="employeedepartment">Employee Department </label>
-                    <Autosuggest
+                    <Autosuggest 
                         suggestions={employeedepartment}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}

@@ -23,11 +23,11 @@ class addproject extends Component {
         upload:'', 
 
      };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChanger = this.handleChanger.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
   }
-  handleChange(date) {
+  handleChanger(date) {
     this.setState({
       startDate: date
     });
@@ -53,7 +53,7 @@ projectname(e){
 
  
  startDate(e){
-    this.setState({startdate:e.target.value})
+    this.setState({startDate:e.target.value})
   }
   endDate(e){
     this.setState({endDate:e.target.value})
@@ -210,7 +210,7 @@ const configers = {
                      <label>Start Date</label><br/>
                            <DatePicker className="form-control-start"
                                   selected={this.state.startDate}
-                                  onChange={this.handleChange}
+                                  onChange={this.handleChanger}
                                 />
                   </div>
 
@@ -232,7 +232,7 @@ const configers = {
                   <div className="checkbox">
                     <label>
                       <input type="checkbox"/> Check me out
-                    </label>
+                    </label>  
                   </div>
                 </div>
                 {/* /.box-body */}
