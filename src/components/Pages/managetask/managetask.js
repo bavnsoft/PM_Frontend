@@ -184,7 +184,7 @@ getEmptask(){
                   <th>Clock In</th>
                   <th>Clock Out</th>
                   <th>Hours</th>
-                  <th colSpan="3" styles={{textAlign:'center'}}>Action</th>
+                  <th colspan="3">Action</th>
              
 
                 </tr>
