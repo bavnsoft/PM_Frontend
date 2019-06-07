@@ -10,6 +10,9 @@ import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import config from '../../../config.json';
 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
+
 const url='http://localhost:4000/';
 class manageleave extends Component {
    constructor(props){
@@ -35,7 +38,9 @@ class manageleave extends Component {
 getleave(){
   this.setState({loder:true});
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getleaves')
+   var role = cryptr.decrypt(localStorage.getItem('role'));
+
+    axios.post(config.LocalapiUrl+'getleaves',{user_id:user_id,role:role})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -48,7 +53,7 @@ getleave(){
           });
 }
 
-ApprovedDisapprovedCancel(emp_id,status){
+ApproveDispproveCancel(emp_id,status,role){
    this.setState({loder:true});
    swal({
             title: "Are you sure you want to "+status+" this",
@@ -60,7 +65,7 @@ ApprovedDisapprovedCancel(emp_id,status){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(config.LiveapiUrl+'ApprovedDisapprovedCancelLeave',{emp_id:emp_id,status:status})
+                 axios.post(config.LocalapiUrl+'ApproveDispproveCancelLeave',{emp_id:emp_id,status:status,role:role})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){
@@ -78,7 +83,8 @@ ApprovedDisapprovedCancel(emp_id,status){
   render() {
 
       const {Leaves,loder}=this.state;
-    console.log(loder,'')
+     var role = cryptr.decrypt(localStorage.getItem('role'));
+   
 
     return (
         <div>
@@ -105,30 +111,48 @@ ApprovedDisapprovedCancel(emp_id,status){
               <tr>
                 <th>Employee Name</th>
                 <th>Type of Day</th>
-                <th>Type of Leave</th>
+                <th>Category</th>
                 <th>Date</th>
                 <th>Description</th>           
-                <th>Action</th>
-                <th>Action</th>
-                <th>Action</th>
+                <th>Status</th>           
+                <th colspan="4"style={{ textAlign: "center"}}>Action</th>
+               
               </tr>
             </thead>
             <tbody>
                 {Leaves && Leaves.length > 0 && 
-                  Leaves.map((item,index)=>(
-              <tr>                
-                <td>{item.EmployeeName}</td>
-                <td>{item.typeofDay}</td>
-                <td>{item.typeofleave}</td>
-                <td>{moment(item.startDate).format('LL')}</td>
-                <td>{item.Description}</td>
-                <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApprovedDisapprovedCancel(item._id,'Approved')}>Approved <i className="fa fa-thumbs-up"></i></button></td>
-                <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApprovedDisapprovedCancel(item._id,'Disapproved')}>Disapproved <i className="fa fa-thumbs-down"></i></button></td>
-                <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApprovedDisapprovedCancel(item._id,'Cancel')}>Cancel <i className="fa fa-remove"></i></button></td>
-              </tr>             
+                    Leaves.map((item,index)=>(
+                     role=="user" ?
+                        <tr>                
+                          <td>{item.EmployeeName}</td>
+                          <td>{item.typeofDay}</td>
+                          <td>{item.typeofleave}</td>
+                          <td>{moment(item.startDate).format('LL')}</td>
+                          <td>{item.Description}</td>
+                          <td>{item.status}</td>
+                         
+                          <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDispproveCancel(item.user_id ,'Cancel',role)}>Cancel <i className="fa fa-remove"></i></button></td>
+                        </tr>    
+
+                        : <tr>                
+                          <td>{item.EmployeeName}</td>
+                          <td>{item.typeofDay}</td>
+                          <td>{item.typeofleave}</td>
+                          <td>{moment(item.startDate).format('LL')}</td>
+                          <td>{item.Description}</td>
+                          <td>{item.status}</td>
+                         
+                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDispproveCancel(item.user_id,'Approve',role)}>Approve It</button></td>
+                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDispproveCancel(item.user_id,'Dispprove',role)}>Disprove It</button></td>
+                          <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDispproveCancel(item.user_id,'Cancelled',role)}>Cancel <i className="fa fa-remove"></i></button></td>
+                        </tr>         
                 ))}
+
             </tbody>            
           </table>
+          {Leaves && Leaves.length == 0 && 
+            <p style={{textAlign:"center",color:"red"}}>No leaves found</p>
+          }
         </div>
     </div>
 </div>

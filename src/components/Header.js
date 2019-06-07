@@ -9,8 +9,8 @@ export default class Header extends Component {
         return (
             <header className="main-header">
                 <a href="#" className="logo">
-                    <span className="logo-mini"><b>A</b>LT</span>
-                    <span className="logo-lg"><b>PM_SOFTWARE</b></span>
+                    <span className="logo-mini"><b>PM</b></span>
+                    <span className="logo-lg" style={{fontSize:"13px"}}><b>PM SOFTWARE</b></span>
                 </a>
                 <nav className="navbar navbar-static-top">
                     <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">

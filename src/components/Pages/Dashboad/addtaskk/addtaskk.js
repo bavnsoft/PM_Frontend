@@ -59,7 +59,7 @@ alert('ys')
       const  {projectName,description,Hours,count} = this.state;
           var user_id = localStorage.getItem('user_id');   
 
-  axios.post(config.LiveapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
+  axios.post(config.LocalapiUrl+'addtask', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
           .then((result) => {
             //access the results here....
 
@@ -181,7 +181,7 @@ handleShareholderDescription = idx => evt => {
 
   getproject(){
 
-     axios.post(config.LiveapiUrl+'getproject')
+     axios.post(config.LocalapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
             console.log(result.data);

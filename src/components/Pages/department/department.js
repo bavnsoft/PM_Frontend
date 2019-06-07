@@ -33,7 +33,7 @@ class department extends Component {
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getdepartment')
+    axios.post(config.LocalapiUrl+'getdepartment')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -66,7 +66,7 @@ Delete(id){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(config.LiveapiUrl+'deletedepartment', {id:id})
+               axios.post(config.LocalapiUrl+'deletedepartment', {id:id})
                   .then((result) => {
                    console.log(result.data.message);
 
@@ -119,7 +119,7 @@ departmentname(e){
 
     const  {departmentname} = this.state;
 
-      axios.post(config.LiveapiUrl+'department', {departmentname})
+      axios.post(config.LocalapiUrl+'department', {departmentname})
           .then((result) => {
             //access the results here....
 
@@ -145,7 +145,7 @@ departmentname(e){
   updatedepartmentname(e){
 
     const  {editdepartmentname,departmentId} = this.state;
-     axios.post(config.LiveapiUrl+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
+     axios.post(config.LocalapiUrl+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
           .then((result) => {
             //access the results here....
 
@@ -227,8 +227,8 @@ departmentname(e){
               <tr>
                 
                 <th className="col-sm-10">Department</th>
-                <th className="col-sm-1"></th>
-                <th className="col-sm-1">Action</th>
+                <th colspan="2"style={{ textAlign: "center"}}>Action</th>
+
               </tr>
             </thead>
             <tbody>

@@ -1,7 +1,7 @@
 /*!
  *   AdminLTE v2.4.0
  *   Author: Almsaeed Studio
- *   Website: Almsaeed Studio <https://adminlte.io>
+ *	 Website: Almsaeed Studio <https://adminlte.io>
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
  */
@@ -1612,6 +1612,7 @@ a:focus {
   margin-bottom: 20px;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  height: 550px
 }
 .box.box-primary {
   border-top-color: #3c8dbc;
@@ -5763,7 +5764,7 @@ button.btn.btn-primary-das {
  @media screen and (max-width: 480px){
 
 button.btn.btn-primary-emp {
-    margin: 0 0 0px 265px;
+    margin: 0 0 0px 291px;
 }
 }
 
@@ -5828,12 +5829,12 @@ input.form-control-end {
 }
 }
 
-button.btn.btn-primary-submit.btn-block.btn-flat {
+/*button.btn.btn-primary-submit.btn-block.btn-flat {
     margin: 19px 0px 50px -29px;
     border-radius: 3px;
     height: 34px;
-}zz
-
+}
+*/
 
 button.btn.btn-primary-register.btn-block.btn-flat {
     border-radius: 3px;
@@ -5849,11 +5850,15 @@ button.btn.btn-primary-register.btn-block.btn-flat {
     margin: 0 0 0px -28px;
     }
   }
+
+  button.btn.btn-primary-r {
+    margin: 0 0px 0 -18px;
+    width: 78px;
+}
 @media screen and (max-width: 480px){
-  button.btn.btn-primary-submit.btn-block.btn-flat {
-    margin: 19px 0px 50px -36px;
-    border-radius: 3px;
-    height: 40px;
+button.btn.btn-primary-r {
+    width: 71px;
+    margin: 0 0 0 -19px;
 }
 }
 input.form-control-date {
@@ -5866,5 +5871,20 @@ input.form-control-date {
     margin: 0 0 0 0px;
     width: 248px;
     height: 37px;
+}
+}
+
+
+.box.box-primary-editt {
+    width: 730px;
+}
+
+button.btn.btn-primary-addm {
+    margin: 0 0 0 114px;
+}
+
+@media screen and (max-width: 480px){
+button.btn.btn-primary-addm {
+    margin: 0 0 0 258px;
 }
 }

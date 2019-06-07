@@ -47,7 +47,7 @@ getproj(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getproject')
+    axios.post(config.LocalapiUrl+'getproject')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -84,7 +84,7 @@ addst(){
 
   addstatus(status){
 
-     axios.post(config.LiveapiUrl+'addstatus', {status:status,id:this.state.project_id})
+     axios.post(config.LocalapiUrl+'addstatus', {status:status,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 
@@ -112,7 +112,7 @@ addst(){
 
   addmilestone(milestone){
 
-     axios.post(config.LiveapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
+     axios.post(config.LocalapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 
@@ -231,11 +231,11 @@ handleShareholderDetail = idx => evt => {
 <div>
         <label>Select Stauts</label>
         <select className="form-control select2" style={{width: '100%'}}>
-          <option selected="selected">select</option>
-          <option>Progress</option>
-          >
-          <option>Complete</option>
-          <option>Canceled</option>
+         {/* <option selected="selected">select</option>*/}
+          <option value="Progress">Progress</option>
+          
+          <option value="Complete">Complete</option>
+          <option value="Canceled">Canceled</option>
         </select>
       </div>
 
@@ -244,7 +244,7 @@ handleShareholderDetail = idx => evt => {
 
               <div className="modal-footer">
                 {/*<button type="button" className="btn btn-default pull-left" data-dismiss="modal">Close</button>*/}
-                <button type="button" className="btn btn-primary"data-dismiss="modal" onClick={(e)=>this.addstatus('Progress')}>Apply</button>
+                <button type="button" className="btn btn-primary"data-dismiss="modal" onClick={(e)=>this.addstatus()}>Apply</button>
               </div>
             </div>         
              
@@ -282,7 +282,7 @@ handleShareholderDetail = idx => evt => {
               <div className="col-md-4">
         
          <button
-          type="button" className="btn btn-primary"
+          type="button" className="btn btn-primary-addm"
           onClick={this.handleAddShareholder}
           >
           ADD
@@ -351,6 +351,7 @@ handleShareholderDetail = idx => evt => {
           </div>              
        </div>
         ))}
+          
      <center>
      <button type="button" className="btn btn-primary submit" onClick={(e)=>this.addmilestone(e)}>Submit</button>
 </center>
@@ -402,8 +403,8 @@ handleShareholderDetail = idx => evt => {
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Attachment</th>              
-                <th>Action</th>
-                <th>Action</th>
+                <th colspan="4"style={{ textAlign: "center"}}>Action</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -415,7 +416,7 @@ handleShareholderDetail = idx => evt => {
                     <td>{moment(item.startDate).format('LL')}</td>
                       <td>{moment(item.endDate).format('LL')}</td>
                         <td><img src={item.upload } style={{height:"50px",width:"50px"}}/></td>
-                <td> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#modal-defaults" onClick={(e)=>this.getMilestone(item._id,item.milestone)}>Add Milestone</button></td>
+                <td> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#modal-defaults" onClick={(e)=>this.getMilestone(item._id,item.milestone)}>Milestone</button></td>
                 <td> <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#modal-default" onClick={(e)=>this.get_project_id(item._id)}>Status </button></td>
               </tr>
               

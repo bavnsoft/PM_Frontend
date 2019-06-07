@@ -15,6 +15,8 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import config from '../../../config.json';
 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 
 
 const url='http://localhost:4000/';
@@ -30,7 +32,14 @@ class Dashboad extends Component {
         TimeIn:'',
         clockout:'',
         loder:false,
-        taskstatus:''
+        taskstatus:'',
+        flag:false,
+        userid:'',
+        userTask:'',
+        Hours:'',
+        project_id:'',
+        discription:"",
+        singleUsertask:""
 
          
 
@@ -50,8 +59,69 @@ class Dashboad extends Component {
   // }
 
    componentWillMount(){
-    this.featchTasks();
-   }
+    this.getAllTaks("");
+
+
+
+ 
+  }
+  getAllTaks(user_id){
+    console.log(user_id)
+    axios.post(config.LocalapiUrl+'getalltask')
+          .then((result) => {
+            //access the results here....
+                if(result.data.status==true){
+                  var usertask = result.data.result
+                  var userTasks = [];
+                  var singleUsertask = [];
+                   
+                   for(let i=0;i<usertask.length;i++){
+                         if(user_id==""){
+                           console.log("first")
+                      
+                            userTasks.push({
+                            date:usertask[i].date,
+                            Hours:JSON.parse(usertask[i].Hours),
+                            discription:JSON.parse(usertask[i].discription),
+                            project_id:JSON.parse(usertask[i].project_id),
+                            _id:usertask[i]._id,
+                            user_id:usertask[i].user_id ? usertask[i].user_id._id : null,
+                            employeename:usertask[i].user_id ? usertask[i].user_id.employeename : 'N/A',
+                           })
+                          }else{
+
+                            console.log("last")
+                            console.log(usertask[i]._id,"==",user_id)
+
+                            if(usertask[i]._id==user_id){
+
+                             singleUsertask.push({
+                                Hours:JSON.parse(usertask[i].Hours),
+                                discription:JSON.parse(usertask[i].discription),
+                                project_id:JSON.parse(usertask[i].project_id),
+                              
+                             })
+                           }
+
+
+
+
+                          }
+
+                   } 
+
+                    this.setState({userTask:userTasks,singleUsertask:singleUsertask})
+                    this.setState({loder:false});
+
+                }
+           
+
+          });
+  }
+
+
+
+   
     componentDidUpdate() {
      const {TimeIn } = this.state;
       var timeDifference = "";
@@ -131,11 +201,10 @@ timeout(e){
       icon: "success",
   });
 
-                axios.post(config.LiveapiUrl+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
+                axios.post(config.LocalapiUrl+'timeout', {TimeOut:moment(),user_id:user_id,timeIn:moment(TimeIn)})
                     .then((result) => {
                       //access the results here....
 
-                      console.log(result.data);
 
                       if(result.data.status==true){
                           swal(result.data.message);
@@ -194,11 +263,10 @@ timeout(e){
      const  {discription} = this.state;
 
 
-      axios.post(config.LiveapiUrl+'addtask', {discription,user_id})
+      axios.post(config.LocalapiUrl+'addtask', {discription,user_id})
           .then((result) => {
             //access the results here....
 
-            console.log(result.data);
 
             if(result.data.status==true){
                 swal(result.data.message);
@@ -223,15 +291,14 @@ timeout(e){
    // this.setState({loder:true});
 
      var user_id = localStorage.getItem('user_id'); 
-     axios.post(config.LiveapiUrl+'featchTask', {user_id})
+     axios.post(config.LocalapiUrl+'featchTask', {user_id})
           .then((result) => {
             //access the results here....
 
-            console.log(result.data.result.status);
             if (result.data.length !=0 ){
                 if(result.data.status==true){
                   result.data.result.map((time,index)=>{
-                    this.setState({TimeIn :time.date, taskstatus:time.status,loder:false})
+                    this.setState({userid:time.user_id,flag:true,TimeIn :time.date, taskstatus:time.status,loder:false})
 
                   })
                    // this.setState({TimeIn :result.data.result[0].date })
@@ -243,30 +310,115 @@ timeout(e){
 
   }
 
+
+
+
   render() {
 
-     const {timeout,loder,taskstatus,TimeOut}=this.state;
-     console.log(taskstatus);
-  
+     const {timeout,loder,taskstatus,TimeOut,flag,userid,userTask,singleUsertask}=this.state;
+       var role = cryptr.decrypt(localStorage.getItem('role'));
+
+     console.log(singleUsertask);
+    
     return (
            <div>
         <Header/>
         <SideBar/>
          {loder &&
             <div id="app" className="loader"></div>}
+
         <div className="content-wrapper">
                 <section className="content-header">
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box">
+           {  role=="admin" ?<h3 className="box-title"> &nbsp;&nbsp;Today Employee Presents</h3> :""}                      
+
                                 <div className="box-header with-border">
 
                                   <div className="row">
+
+                                  {role=="admin"?
+
+ <div className="box-body">
+          <table id="example1" className="table table-bordered table-striped">
+            <thead>
+              <tr>
+                 <th>Date</th>
+                <th>Employee Name</th>
+                <th>Action</th>
+                              
+              </tr>
+            </thead>
+            <tbody>
+                {userTask && userTask.length > 0 && 
+                  userTask.map((item,index)=>(
+                    <tr key={index}>
+                      <td>{moment(item.date).format('DD-MM-YYYY')}</td>
+                     
+                                  
+                          <td>{item.employeename}</td>
+                          
+                          <td><button type="button" className="btn btn-primary "data-toggle="modal" data-target="#myModal" onClick={()=>this.getAllTaks(item._id)}>View <i className="fa fa-eye"></i></button></td>
+                        
+                        </tr>       
+            
+               ))}
+            </tbody>            
+          </table>
+           <div className="modal fade" id="myModal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              
+              <div className="modal-header">
+                <h4 className="modal-title">View Task</h4>
+                <button type="button" className="close" data-dismiss="modal">×</button>
+              </div>
+             
+              <div className="row">
+             <div className="col-sm-12">
+             <div className="box">
+              <div className="modal-body col-sm-4">
+               <tr>
+                 <th>Project</th>    
+            
+              </tr>
+             
+
+              </div>
+             <div className="modal-body col-sm-4">
+               <tr>
+                 <th>Description</th>  
+              </tr>
+              </div>
+              <div className="modal-body col-sm-4">
+              <tr>
+                 <th>Hours</th>                    
+              </tr>
+              </div> 
+              
+              </div>
+              </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        </div>
+
+                                  :""}
                                   <div className="col-xs-10">
-                                    <h3 className="box-title">Dashboard</h3>
+                          {  role=="user" ? <h3 className="box-title">Dashboard</h3>:""}
                                 </div>  
 
-             <button type="button" className="btn btn-primary-das"><Link to="/addtaskk">Add Task</Link></button>
+            {flag == true ? <button type="button" className="btn btn-primary-das"><Link to={"/edit-task"}>Edit Task</Link></button>:
+            role =="user" ?<button type="button" className="btn btn-primary-das"><Link to="/addtaskk">Add Task</Link></button>:""
+             }                    
+
+             
 
               <div className="col-xs-2">               
              
@@ -309,10 +461,10 @@ timeout(e){
                                     <div className="row">
                                         <div className="col-md-10">
                                         <h2>{TimeOut}</h2>
-                                         <button type="button" className="btn btn-primary"onClick={(e)=>this.addtaskk(e)} disabled={TimeOut}>Time IN</button>
+                                  { role =="user" ?  <button type="button" className="btn btn-primary" disabled={TimeOut}>Time IN</button>:""}
                                         </div>
                                         <div className="col-md-2">
-                                         <button type="button" className="btn btn-primary-tim"onClick={(e)=>this.timeout(e)} disabled={taskstatus!="Approved" }>Time Out</button>
+                                   { role =="user" ? <button type="button" className="btn btn-primary-tim"onClick={(e)=>this.timeout(e)} disabled={taskstatus!="Approved" } style={{marginTop: '63px'}}>Time Out</button>:""}
                                         </div><br/><br/><br/><br/><br/>   
                                   </div>
                                 </div>
@@ -333,8 +485,9 @@ timeout(e){
             </div>
     </div>
          
-    );
-  }
+);
 }
+}
+
 
 export default Dashboad;

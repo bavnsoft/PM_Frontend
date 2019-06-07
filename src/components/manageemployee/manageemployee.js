@@ -42,7 +42,7 @@ getEmp(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getempolyes')
+    axios.post(config.LocalapiUrl+'getempolyes')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -73,7 +73,7 @@ Delete(employeeid){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(config.LiveapiUrl+'deleteempolyes', {employeeid:employeeid})
+               axios.post(config.LocalapiUrl+'deleteempolyes', {employeeid:employeeid})
                   .then((result) => {
                    console.log(result.data.message);
 
@@ -140,8 +140,8 @@ Delete(employeeid){
                 <th>Employee Email</th>
                 <th>Phone No</th>
                 <th>Employee Department</th>
-                <th>Action</th>
-                <th>Action</th>
+                <th colspan="4"style={{ textAlign: "center"}}>Action</th>
+                
               </tr>
             </thead>
             <tbody>

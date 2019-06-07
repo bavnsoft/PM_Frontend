@@ -10,7 +10,8 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import swal from 'sweetalert';
 import config from '../../../config.json';
-
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 const url='http://localhost:4000/';
 
 class managetask extends Component {
@@ -31,14 +32,14 @@ class managetask extends Component {
   this.setState({loder:true});
 
     var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getalltask', {user_id})
+    axios.post(config.LocalapiUrl+'getalltask', {user_id})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
                   var usertask = result.data.result
                   var userTasks = [];
                    for(let i=0;i<usertask.length;i++){
-                  
+                        console.log(usertask[i].timeout,'---')
                        userTasks.push({
                         date:usertask[i].date,
                         discription:usertask[i].discription,
@@ -62,7 +63,7 @@ class managetask extends Component {
 
   TaskApproved(emp_id){
     this.setState({loder:true});
-    axios.post(config.LiveapiUrl+'TaskApprove', {emp_id:emp_id})
+    axios.post(config.LocalapiUrl+'TaskApprove', {emp_id:emp_id})
           .then((result) => {
               //access the results here....
                 if(result.data.status==true){
@@ -140,7 +141,8 @@ getEmptask(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LiveapiUrl+'getempolyestask')
+   var role = cryptr.decrypt(localStorage.getItem('role'));
+    axios.post(config.LocalapiUrl+'getempolyestask',{user_id:user_id,role:role})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -157,7 +159,7 @@ getEmptask(){
 
   render() {
    const {userTask,loder,TimeIN,timeout,hours}=this.state;
-    console.log(userTask);
+    var role = cryptr.decrypt(localStorage.getItem('role'));
     return (
 
 
@@ -180,12 +182,13 @@ getEmptask(){
                 <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Employee Name</th>
+                  {role =="admin" ? <th>Employee Name</th> : ""} 
                   <th>Clock In</th>
                   <th>Clock Out</th>
                   <th>Hours</th>
-                  <th colspan="3" styles={{textAlign:'center'}}>Action</th>
+
              
+                <th colspan={role =="admin" ? "4" :""}style={{ textAlign: "center"}}>{role =="admin" ? "Action" : "Status"}</th>
 
                 </tr>
                 </thead>
@@ -196,17 +199,30 @@ getEmptask(){
                 <tbody>
                 {userTask && userTask.length > 0 && 
                   userTask.map((item,index)=>(
+                   role =="admin" ?
                     <tr key={index}>
                       <td>{moment(item.date).format('DD-MM-YYYY')}</td>
-                      <td>{item.employeename}</td>
-                      
+                      <td>{item.employeename}</td>                 
                       <td>{moment(item.date).format('hh:mm:ss')}</td>
                       <td>{item.timeout ? moment(item.timeout).format('hh:mm:ss') : 'N/A'}</td>
-                     <td>{this.timeDifference(item.date,item.timeout)}</td>
-                       <td colSpan="1.5"> <button type="button" className="btn btn-primary" onClick={()=>this.TaskApproved(item.user_id)}>Approved <i className="fa fa-thumbs-up"></i></button></td>
-                       <td colSpan="1.5"> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#myModal" onClick={()=>this.viewtask(item.date,item.timeout)}>View Task <i className="fa fa-eye"></i></button></td>
-                       <td colSpan="1.5"> <button type="button" className="btn btn-primary"><Link to ={'/edittask/'+item._id}>Edit Task <i className="fa fa-edit"></i></Link></button></td>
+                      <td>{this.timeDifference(item.date,item.timeout)}</td>
+                       <td> <button type="button" className="btn btn-primary" onClick={()=>this.TaskApproved(item.user_id)}>Approve <i className="fa fa-thumbs-up"></i></button></td>
+                       <td> <button type="button" className="btn btn-primary"data-toggle="modal" data-target="#myModal" onClick={()=>this.viewtask(item.date,item.timeout)}>View Task <i className="fa fa-eye"></i></button></td>
+                       <td> <button type="button" className="btn btn-primary"><Link to ={'/edittask/'+item._id}>Edit Task <i className="fa fa-edit"></i></Link></button></td>
                
+                    </tr>
+                    :
+                    <tr key={index}>
+                      <td>{moment(item.date).format('DD-MM-YYYY')}</td>                
+                      <td>{moment(item.date).format('hh:mm:ss')}</td>
+                      <td>{moment(item.timeout).format('hh:mm:ss')}</td>
+
+                      <td>{item.timeout ? moment(item.timeout).format('hh:mm:ss') : 'N/A'}</td>
+                     
+
+                      <td>{this.timeDifference(item.date,item.timeout)}</td>
+                       <td> {item.status} </td>
+                       
                     </tr>
 
 
@@ -220,7 +236,7 @@ getEmptask(){
             <div className="modal-content">
               
               <div className="modal-header">
-                <h4 className="modal-title">Modal Heading</h4>
+                <h4 className="modal-title">View Task</h4>
                 <button type="button" className="close" data-dismiss="modal">×</button>
               </div>
               

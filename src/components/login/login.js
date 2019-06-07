@@ -4,6 +4,9 @@ import $ from "jquery";
 import axios from 'axios';
 import swal from 'sweetalert';
 import config from '../../config.json';
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
+
 
 
 const url='http://localhost:4000/';
@@ -52,7 +55,7 @@ login(e){
 }
 
  const { email, password } = this.state;
-   axios.post(config.LiveapiUrl+'login', {email, password})
+   axios.post(config.LocalapiUrl+'login', {email, password})
           .then((result) => {
             //access the results here....
 
@@ -60,9 +63,10 @@ login(e){
 
             if(result.data.status==true){
                 
-                //console.log(result.data);
-
+                console.log(result.data.role);
+                   
                 localStorage.setItem('user_id',result.data.user_id);
+                localStorage.setItem('role',cryptr.encrypt(result.data.role));
                                 this.props.history.replace('/Dashboard');
 
             //localStorage.setItem('user_id'JSON,stringfy(user_id));
@@ -82,6 +86,8 @@ login(e){
 
 
 }
+
+
 
   render() {
     return (
@@ -114,8 +120,9 @@ login(e){
               </div>
               {/* /.col */}
               <div className="col-xs-4">
-                <button type="button" className="btn btn-primary-submit btn-block btn-flat"onClick={(e)=>this.login(e)}>Sign In</button>
+                <button type="button" className="btn btn-primary-r"onClick={(e)=>this.login(e)}>Sign In</button>
               </div>
+
               {/* /.col */}
             </div>
           </form>
