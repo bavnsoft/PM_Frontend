@@ -63,7 +63,7 @@ componentDidMount(){
                 <section className="sidebar">
                     <div className="user-panel">
                         <div className="pull-left image">
-                            <img src={this.state.EmpImg == "" ? "img/user2-160x160.jpg" : this.state.EmpImg} className="img-circle" alt="User Image" />
+                            <img src={this.state.EmpImg == "" ? "img/images.png"  : this.state.EmpImg} className="img-circle" alt="User Image" />
                         </div>
                         <div className="pull-left info">
                             <p>{this.state.EmpName}</p>
@@ -147,7 +147,7 @@ componentDidMount(){
                 <section className="sidebar">
                     <div className="user-panel">
                         <div className="pull-left image">
-                            <img src={this.state.EmpImg == "" ? "img/user2-160x160.jpg" : this.state.EmpImg} className="img-circle" alt="User Image" />
+                            <img src={this.state.EmpImg == "" ? "img/images.png" : this.state.EmpImg} className="img-circle" alt="User Image" />
                         </div>
                         <div className="pull-left info">
                             <p>{this.state.EmpName}</p>
