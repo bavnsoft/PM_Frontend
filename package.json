@@ -1,22 +1,19 @@
 {
-   "name": "myapp",
-  "description": "a really cool app",
-  "version": "1.0.0",
-  "engines": {
-    "node": "10.3.0"
-  },
+  "name": "adminlte-react",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
     "backup": "^1.1.0",
     "bootstrap": "^4.3.1",
     "bootstrap-sweetalert": "^1.0.1",
-    "crypto-js": "^3.1.9-1",
     "cryptr": "^4.0.2",
     "jquery": "^3.4.0",
     "matchstick": "^1.2.1",
     "material-ui-rating": "^3.1.1",
     "mdbreact": "^4.14.0",
+    "node-cryptex": "0.0.2",
     "nodemailer": "^6.1.1",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
