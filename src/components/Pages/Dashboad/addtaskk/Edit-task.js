@@ -297,7 +297,7 @@ handleShareholderDescription = idx => evt => {
             <div className="col-sm-3">
             {this.state.Hours.map((Hours, idx) => (
                 <input
-                  type="text"
+                  type="number"
                   placeholder={`Hours`}
                   value={Hours.Hours}
                   onChange={this.handleShareholderHours(idx)}/>

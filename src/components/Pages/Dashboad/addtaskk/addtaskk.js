@@ -307,7 +307,7 @@ handleShareholderDescription = idx => evt => {
 
             <div className="col-sm-3">
                 <input
-                  type="text"
+                  type="number"
                   placeholder={`Hours`}
                   value={this.state.Hours.Hours}
                   onChange={this.handleShareholderHours(idx)}/>
