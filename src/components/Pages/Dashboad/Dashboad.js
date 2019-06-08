@@ -15,8 +15,6 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import config from '../../../config.json';
 
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
 
 
 const url='http://localhost:4000/';
@@ -76,8 +74,7 @@ class Dashboad extends Component {
                   var singleUsertask = [];
                    
                    for(let i=0;i<usertask.length;i++){
-                         if(user_id==""){
-                           console.log("first")
+                       
                       
                             userTasks.push({
                             date:usertask[i].date,
@@ -88,27 +85,14 @@ class Dashboad extends Component {
                             user_id:usertask[i].user_id ? usertask[i].user_id._id : null,
                             employeename:usertask[i].user_id ? usertask[i].user_id.employeename : 'N/A',
                            })
-                          }else{
-
-                            console.log("last")
-                            console.log(usertask[i]._id,"==",user_id)
-
-                            if(usertask[i]._id==user_id){
-
-                             singleUsertask.push({
-                                Hours:JSON.parse(usertask[i].Hours),
-                                discription:JSON.parse(usertask[i].discription),
-                                project_id:JSON.parse(usertask[i].project_id),
-                              
-                             })
-                           }
+                          
 
 
 
 
                           }
 
-                   } 
+                    
 
                     this.setState({userTask:userTasks,singleUsertask:singleUsertask})
                     this.setState({loder:false});
@@ -316,7 +300,7 @@ timeout(e){
   render() {
 
      const {timeout,loder,taskstatus,TimeOut,flag,userid,userTask,singleUsertask}=this.state;
-       var role = cryptr.decrypt(localStorage.getItem('role'));
+       var role = localStorage.getItem('role');
 
      console.log(singleUsertask);
     

@@ -10,8 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import swal from 'sweetalert';
 import config from '../../../config.json';
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+
 const url='http://localhost:4000/';
 
 class managetask extends Component {
@@ -141,7 +140,7 @@ getEmptask(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-   var role = cryptr.decrypt(localStorage.getItem('role'));
+   var role = localStorage.getItem('role');
     axios.post(config.LocalapiUrl+'getempolyestask',{user_id:user_id,role:role})
           .then((result) => {
             //access the results here....
@@ -159,7 +158,7 @@ getEmptask(){
 
   render() {
    const {userTask,loder,TimeIN,timeout,hours}=this.state;
-    var role = cryptr.decrypt(localStorage.getItem('role'));
+    var role = localStorage.getItem('role');
     return (
 
 

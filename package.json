@@ -8,12 +8,12 @@
     "backup": "^1.1.0",
     "bootstrap": "^4.3.1",
     "bootstrap-sweetalert": "^1.0.1",
-    "cryptr": "^4.0.2",
+  
     "jquery": "^3.4.0",
     "matchstick": "^1.2.1",
     "material-ui-rating": "^3.1.1",
     "mdbreact": "^4.14.0",
-    "node-cryptex": "0.0.2",
+    
     "nodemailer": "^6.1.1",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

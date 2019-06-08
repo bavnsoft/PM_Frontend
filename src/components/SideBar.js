@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 import {NavLink} from 'react-router-dom';
 import config from '../config.json';
 import axios from 'axios';
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+
 
 
 export default class SideBar extends Component {
@@ -55,7 +54,7 @@ componentDidMount(){
         
 
       var user_id = localStorage.getItem('user_id'); 
-     var role = cryptr.decrypt(localStorage.getItem('role'));
+     var role = localStorage.getItem('role');
      console.log(role);
      if(role=='admin'){
          return (

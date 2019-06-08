@@ -235,6 +235,7 @@ handleShareholderDetail = idx => evt => {
           <option value="Progress">Progress</option>
           
           <option value="Complete">Complete</option>
+          
           <option value="Canceled">Canceled</option>
         </select>
       </div>

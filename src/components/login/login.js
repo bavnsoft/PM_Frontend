@@ -4,8 +4,7 @@ import $ from "jquery";
 import axios from 'axios';
 import swal from 'sweetalert';
 import config from '../../config.json';
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+
 
 
 
@@ -66,7 +65,7 @@ login(e){
                 console.log(result.data.role);
                    
                 localStorage.setItem('user_id',result.data.user_id);
-                localStorage.setItem('role',cryptr.encrypt(result.data.role));
+                localStorage.setItem('role',result.data.role);
                                 this.props.history.replace('/Dashboard');
 
             //localStorage.setItem('user_id'JSON,stringfy(user_id));

@@ -10,9 +10,6 @@ import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import config from '../../../config.json';
 
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
-
 const url='http://localhost:4000/';
 class manageleave extends Component {
    constructor(props){
@@ -38,7 +35,7 @@ class manageleave extends Component {
 getleave(){
   this.setState({loder:true});
    var user_id = localStorage.getItem('user_id'); 
-   var role = cryptr.decrypt(localStorage.getItem('role'));
+   var role = localStorage.getItem('role');
 
     axios.post(config.LocalapiUrl+'getleaves',{user_id:user_id,role:role})
           .then((result) => {
@@ -83,7 +80,7 @@ ApproveDispproveCancel(emp_id,status,role){
   render() {
 
       const {Leaves,loder}=this.state;
-     var role = cryptr.decrypt(localStorage.getItem('role'));
+     var role = localStorage.getItem('role');
    
 
     return (
