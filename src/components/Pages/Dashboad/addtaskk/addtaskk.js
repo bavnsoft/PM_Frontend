@@ -296,14 +296,24 @@ handleShareholderDescription = idx => evt => {
                </select>   
             </div>
  
-            
+            {/*
             <div className="col-sm-3">
                 <input
                   type="text"
                   placeholder={`Description`}
                   value={this.state.description.description}
                   onChange={this.handleShareholderDescription(idx)}/>
-                  </div>
+                  </div>*/}
+
+
+<div className="col-sm-3">
+    <div className="form-group">
+      <textarea className="form-control" rows="5" id="Description" name="text"placeholder="Description"
+       value={this.state.description.description}
+       onChange={this.handleShareholderDescription(idx)}></textarea>
+  </div>
+</div>
+
 
             <div className="col-sm-3">
                 <input
@@ -311,6 +321,8 @@ handleShareholderDescription = idx => evt => {
                   placeholder={`Hours`}
                   value={this.state.Hours.Hours}
                   onChange={this.handleShareholderHours(idx)}/>
+
+
                  </div>
 
 
@@ -331,7 +343,7 @@ handleShareholderDescription = idx => evt => {
      <button type="button" className="btn btn-primary" disabled={disabled[0].flag!="true"} onClick={(e)=>this.submit(e)}
              
 
-     >submit</button>
+     >Submit</button>
 
       </form>
             
