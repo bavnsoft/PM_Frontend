@@ -13,6 +13,7 @@ class editemploye extends Component {
      super(props);
      this.state = {
         employeeid:'',
+        employeeemail:'',
         employeename:'',
         employeedepartment:'',
         employeeprofile:'',
@@ -37,6 +38,7 @@ class editemploye extends Component {
                     this.setState({
                       employeedepartment:result.data.result[0].employeedepartment,
                       employeename:result.data.result[0].employeename,
+                      employeeemail:result.data.result[0].employeeemail,
                       employeeid:result.data.result[0].employeeid,
                       employeeprofile:result.data.result[0].employeeprofile,
                       employeeprofilePre:result.data.result[0].employeeprofile,
@@ -68,6 +70,7 @@ employeeid(e){
   }
 
  readURL(input) {
+  
             if (input.target.files && input.target.files[0]) {
                 var reader = new FileReader();
              this.setState({employeeprofile:input.target.files[0]})

@@ -50,7 +50,7 @@ getleave(){
           });
 }
 
-ApproveDispproveCancel(emp_id,status,role){
+ApproveDisapproveCancel(emp_id,status,role){
    this.setState({loder:true});
    swal({
             title: "Are you sure you want to "+status+" this",
@@ -62,7 +62,7 @@ ApproveDispproveCancel(emp_id,status,role){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(config.LiveapiUrl+'ApproveDispproveCancelLeave',{emp_id:emp_id,status:status,role:role})
+                 axios.post(config.LocalapiUrl+'ApproveDisapproveCancelLeave',{emp_id:emp_id,status:status,role:role})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){
@@ -128,7 +128,7 @@ ApproveDispproveCancel(emp_id,status,role){
                           <td>{item.Description}</td>
                           <td>{item.status}</td>
                          
-                          <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDispproveCancel(item.user_id ,'Cancel',role)}>Cancel <i className="fa fa-remove"></i></button></td>
+                          <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDisapproveCancel(item.user_id ,'Cancel',role)}>Cancel <i className="fa fa-remove"></i></button></td>
                         </tr>    
 
                         : <tr>                
@@ -139,9 +139,9 @@ ApproveDispproveCancel(emp_id,status,role){
                           <td>{item.Description}</td>
                           <td>{item.status}</td>
                          
-                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDispproveCancel(item.user_id,'Approve',role)}>Approve It</button></td>
-                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDispproveCancel(item.user_id,'Dispprove',role)}>Disprove It</button></td>
-                          <td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDispproveCancel(item.user_id,'Cancelled',role)}>Cancel <i className="fa fa-remove"></i></button></td>
+                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDisapproveCancel(item.user_id,'Approve',role)}>Approve It</button></td>
+                          <td> <button type="button" className="btn btn-primary" onClick={()=>this.ApproveDisapproveCancel(item.user_id,'Disapprove',role)}>Disapprove It</button></td>
+                          {/*<td> <button type="button" className="btn btn-danger " onClick={()=>this.ApproveDisapproveCancel(item.user_id,'Cancelled',role)}>Cancel <i className="fa fa-remove"></i></button></td>*/}
                         </tr>         
                 ))}
 
