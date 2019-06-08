@@ -32,7 +32,7 @@ componentDidMount(){
      var url = new URL(window.location.href);
      this.getproject();
          
-     axios.post(config.LocalapiUrl+'GettaskById', {id:url.pathname.split('/')[2]})
+     axios.post(config.LiveapiUrl+'GettaskById', {id:url.pathname.split('/')[2]})
           .then((result) => {
             //access the results here....
             console.log(result)
@@ -157,7 +157,7 @@ const configers = {
 }
 
 
-      axios.post(config.LocalapiUrl+'editemptask', formData, configers)
+      axios.post(config.LiveapiUrl+'editemptask', formData, configers)
       //console.log(req.body)
           .then((result) => {
            
@@ -251,7 +251,7 @@ handleShareholderDescription = idx => evt => {
 
   getproject(){
 
-     axios.post(config.LocalapiUrl+'getproject')
+     axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
             console.log(result.data);

@@ -47,7 +47,7 @@ getproj(){
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LocalapiUrl+'getproject')
+    axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -84,7 +84,7 @@ addst(){
 
   addstatus(status){
 
-     axios.post(config.LocalapiUrl+'addstatus', {status:status,id:this.state.project_id})
+     axios.post(config.LiveapiUrl+'addstatus', {status:status,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 
@@ -112,7 +112,7 @@ addst(){
 
   addmilestone(milestone){
 
-     axios.post(config.LocalapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
+     axios.post(config.LiveapiUrl+'addmilestone', {milestone:this.state.shareholders,id:this.state.project_id})
           .then((result) => {
             //access the results here....
 

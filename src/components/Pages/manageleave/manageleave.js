@@ -37,7 +37,7 @@ getleave(){
    var user_id = localStorage.getItem('user_id'); 
    var role = localStorage.getItem('role');
 
-    axios.post(config.LocalapiUrl+'getleaves',{user_id:user_id,role:role})
+    axios.post(config.LiveapiUrl+'getleaves',{user_id:user_id,role:role})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -62,7 +62,7 @@ ApproveDispproveCancel(emp_id,status,role){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(config.LocalapiUrl+'ApproveDispproveCancelLeave',{emp_id:emp_id,status:status,role:role})
+                 axios.post(config.LiveapiUrl+'ApproveDispproveCancelLeave',{emp_id:emp_id,status:status,role:role})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){

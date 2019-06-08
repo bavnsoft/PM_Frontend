@@ -33,7 +33,7 @@ class department extends Component {
     this.setState({loder:true});
 
    var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LocalapiUrl+'getdepartment')
+    axios.post(config.LiveapiUrl+'getdepartment')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -66,7 +66,7 @@ Delete(id){
           .then((willDelete) => {
             if (willDelete) {
 
-               axios.post(config.LocalapiUrl+'deletedepartment', {id:id})
+               axios.post(config.LiveapiUrl+'deletedepartment', {id:id})
                   .then((result) => {
                    console.log(result.data.message);
 
@@ -119,7 +119,7 @@ departmentname(e){
 
     const  {departmentname} = this.state;
 
-      axios.post(config.LocalapiUrl+'department', {departmentname})
+      axios.post(config.LiveapiUrl+'department', {departmentname})
           .then((result) => {
             //access the results here....
 

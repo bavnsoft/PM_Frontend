@@ -35,7 +35,7 @@ componentDidMount(){
 
    getproject(){
 
-     axios.post(config.LocalapiUrl+'getproject')
+     axios.post(config.LiveapiUrl+'getproject')
           .then((result) => {
             //access the results here.....
               if(result.data.status==true){
@@ -55,7 +55,7 @@ componentDidMount(){
       const  {projectName,description,Hours,count} = this.state;
       var user_id = localStorage.getItem('user_id');   
 
-       axios.post(config.LocalapiUrl+'editMyTaks ', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
+       axios.post(config.LiveapiUrl+'editMyTaks ', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
           .then((result) => {
             //access the results here....
 
@@ -77,7 +77,7 @@ componentDidMount(){
    featchTasks(){
 
      var user_id = localStorage.getItem('user_id'); 
-     axios.post(config.LocalapiUrl+'featchTask', {user_id})
+     axios.post(config.LiveapiUrl+'featchTask', {user_id})
           .then((result) => {
             //access the results here....
 

@@ -28,7 +28,7 @@ class editemploye extends Component {
   componentWillMount(){
 
         
-         axios.post(config.LocalapiUrl+'GetEmpById', {id:this.props.match.params.id})
+         axios.post(config.LiveapiUrl+'GetEmpById', {id:this.props.match.params.id})
           .then((result) => {
             //access the results here....
             console.log(result)
@@ -132,7 +132,7 @@ const configers = {
 }
 
 
-      axios.post(config.LocalapiUrl+'editempolyes', formData, configers)
+      axios.post(config.LiveapiUrl+'editempolyes', formData, configers)
       //console.log(req.body)
           .then((result) => {
            

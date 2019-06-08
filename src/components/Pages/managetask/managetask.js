@@ -31,7 +31,7 @@ class managetask extends Component {
   this.setState({loder:true});
 
     var user_id = localStorage.getItem('user_id'); 
-    axios.post(config.LocalapiUrl+'getalltask', {user_id})
+    axios.post(config.LiveapiUrl+'getalltask', {user_id})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -62,7 +62,7 @@ class managetask extends Component {
 
   TaskApproved(emp_id){
     this.setState({loder:true});
-    axios.post(config.LocalapiUrl+'TaskApprove', {emp_id:emp_id})
+    axios.post(config.LiveapiUrl+'TaskApprove', {emp_id:emp_id})
           .then((result) => {
               //access the results here....
                 if(result.data.status==true){
@@ -141,7 +141,7 @@ getEmptask(){
 
    var user_id = localStorage.getItem('user_id'); 
    var role = localStorage.getItem('role');
-    axios.post(config.LocalapiUrl+'getempolyestask',{user_id:user_id,role:role})
+    axios.post(config.LiveapiUrl+'getempolyestask',{user_id:user_id,role:role})
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){

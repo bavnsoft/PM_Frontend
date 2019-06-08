@@ -128,7 +128,7 @@ onChange = (event, { newValue }) => {
     //this.setState({loder:true});
 
  
-    axios.post(config.LocalapiUrl+'autogenrate')
+    axios.post(config.LiveapiUrl+'autogenrate')
           .then((result) => {
             //access the results here....
                 if(result.data.status==true){
@@ -250,7 +250,7 @@ const configers = {
     headers: { 'content-type': 'multipart/form-data' }
 }
 
-      axios.post(config.LocalapiUrl+'employee', formData, configers)
+      axios.post(config.LiveapiUrl+'employee', formData, configers)
           .then((result) => {
            
 

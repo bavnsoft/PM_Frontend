@@ -142,7 +142,7 @@ const configers = {
 
 
 
-      axios.post(config.LocalapiUrl+'project', formData, configers)
+      axios.post(config.LiveapiUrl+'project', formData, configers)
           .then((result) => {
            
 
