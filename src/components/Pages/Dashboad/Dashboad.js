@@ -25,19 +25,13 @@ class Dashboad extends Component {
      this.state = {
         discription:'',
         show: false,
+        flag: false,
         tasks:'',
         TimeOut:'',
         TimeIn:'',
         clockout:'',
         loder:false,
-        taskstatus:'',
-        flag:false,
-        userid:'',
-        userTask:'',
-        Hours:'',
-        project_id:'',
-        discription:"",
-        singleUsertask:""
+        taskstatus:''
 
          
 
@@ -57,55 +51,8 @@ class Dashboad extends Component {
   // }
 
    componentWillMount(){
-    this.getAllTaks("");
-
-
-
- 
-  }
-  getAllTaks(user_id){
-    console.log(user_id)
-    axios.post(config.LiveapiUrl+'getalltask')
-          .then((result) => {
-            //access the results here....
-                if(result.data.status==true){
-                  var usertask = result.data.result
-                  var userTasks = [];
-                  var singleUsertask = [];
-                   
-                   for(let i=0;i<usertask.length;i++){
-                       
-                      
-                            userTasks.push({
-                            date:usertask[i].date,
-                            Hours:JSON.parse(usertask[i].Hours),
-                            discription:JSON.parse(usertask[i].discription),
-                            project_id:JSON.parse(usertask[i].project_id),
-                            _id:usertask[i]._id,
-                            user_id:usertask[i].user_id ? usertask[i].user_id._id : null,
-                            employeename:usertask[i].user_id ? usertask[i].user_id.employeename : 'N/A',
-                           })
-                          
-
-
-
-
-                          }
-
-                    
-
-                    this.setState({userTask:userTasks,singleUsertask:singleUsertask})
-                    this.setState({loder:false});
-
-                }
-           
-
-          });
-  }
-
-
-
-   
+    this.featchTasks();
+   }
     componentDidUpdate() {
      const {TimeIn } = this.state;
       var timeDifference = "";
@@ -189,6 +136,7 @@ timeout(e){
                     .then((result) => {
                       //access the results here....
 
+                      console.log(result.data);
 
                       if(result.data.status==true){
                           swal(result.data.message);
@@ -251,6 +199,7 @@ timeout(e){
           .then((result) => {
             //access the results here....
 
+            console.log(result.data);
 
             if(result.data.status==true){
                 swal(result.data.message);
@@ -279,10 +228,11 @@ timeout(e){
           .then((result) => {
             //access the results here....
 
+            console.log(result.data.result.status);
             if (result.data.length !=0 ){
                 if(result.data.status==true){
                   result.data.result.map((time,index)=>{
-                    this.setState({userid:time.user_id,flag:true,TimeIn :time.date, taskstatus:time.status,loder:false})
+                    this.setState({TimeIn :time.date, flag:true,taskstatus:time.status,loder:false})
 
                   })
                    // this.setState({TimeIn :result.data.result[0].date })
