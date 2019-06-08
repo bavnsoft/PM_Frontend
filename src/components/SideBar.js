@@ -26,7 +26,7 @@ componentDidMount(){
      Getemp(){
 
      var user_id = localStorage.getItem('user_id'); 
-     axios.post(config.LocalapiUrl+'GetEmpById', {id:user_id})
+     axios.post(config.LiveapiUrl+'GetEmpById', {id:user_id})
           .then((result) => {
             //access the results here....
 
