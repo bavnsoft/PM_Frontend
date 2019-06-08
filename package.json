@@ -12,7 +12,6 @@
     "bootstrap": "^4.3.1",
     "bootstrap-sweetalert": "^1.0.1",
     "crypto-js": "^3.1.9-1",
-    "cryptr": "^4.0.2",
     "jquery": "^3.4.0",
     "matchstick": "^1.2.1",
     "material-ui-rating": "^3.1.1",
