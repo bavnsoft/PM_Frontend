@@ -1,7 +1,10 @@
 {
-  "name": "adminlte-react",
-  "version": "0.1.0",
-  "private": true,
+  "name": "myapp",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
