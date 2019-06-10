@@ -183,13 +183,7 @@ const configers = {
                   <div className="form-group">
                     <label htmlFor="EmployeeName">Employee Name</label>
                     <input type="EmployeeName" className="form-control" id="EmployeeName" placeholder="Employee Name"  onChange={(e)=>this.EmployeeName(e)}/>
-                <select className="form-control">
-                    <option>RahuL</option>
-                    <option>Sumit </option>
-                    <option>shivank </option>
-                    <option>Jagjit </option>
-                    <option>Other</option>
-                  </select>
+                
                  <div className="errorrrr"><h5></h5></div>
                   </div>
 
