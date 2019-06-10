@@ -62,7 +62,7 @@ ApproveDisapproveCancel(emp_id,status,role){
           
           .then((willDelete) => {
             if (willDelete) {
-                 axios.post(config.LocalapiUrl+'ApproveDisapproveCancelLeave',{emp_id:emp_id,status:status,role:role})
+                 axios.post(config.LiveapiUrl+'ApproveDisapproveCancelLeave',{emp_id:emp_id,status:status,role:role})
                       .then((result) => {
                         //access the results here....
                             if(result.data.status==true){
@@ -95,7 +95,7 @@ ApproveDisapproveCancel(emp_id,status,role){
         <div className="box-header">     
         <div className="row">
         <div className="col-xs-10">                       
-          <h3 className="box-title">Manage Leaves</h3>                         
+          <h3 className="box-title"><b>Manage Leaves</b></h3>                         
         </div>
         <div className="col-xs-2">
         <button type="button"className="btn btn-primary-leave"><Link to ='/addleave'>Add Leaves</Link></button>

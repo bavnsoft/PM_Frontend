@@ -5888,3 +5888,14 @@ button.btn.btn-primary-addm {
     margin: 0 0 0 258px;
 }
 }
+textarea#Description {
+    height: 37px;
+    margin: 11px 0px 0px -17px;
+    width: 172px;
+}
+textarea#Milestone {
+    height: 39px;
+    width: 135px;
+    margin: 11px 0px 0px -17px;
+}
+

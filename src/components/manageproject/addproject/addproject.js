@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import config from '../../../config.json';
+import Autosuggest from 'react-autosuggest';
 
 const url='http://localhost:4000/';
 class addproject extends Component {
@@ -41,6 +42,27 @@ handleChange(date) {
    componentDidMount(){
   
     }
+
+
+      componentWillMount(){
+
+  
+    //this.setState({loder:true});
+
+ 
+  /*  axios.post(config.LocalapiUrl+'autogenrate')
+          .then((result) => {
+            //access the results here....
+                if(result.data.status==true){
+                    this.setState({serialno:result.data.maxvalue ? result.data.maxvalue : 1000})
+                  
+
+
+                }
+           
+
+          });*/
+}
 
     
  serialno(e){
@@ -86,14 +108,14 @@ upload(e){
       setTimeout(function(){ $(".errorr").hide();},3000);
       return false;
 }
- console.log(this.state);
+ /*console.log(this.state);
   if(!this.state.serialno.trim()){
       $(".errorrr").show();
       $(".errorrr h5").html("Please enter your Task Name")
       setTimeout(function(){ $(".errorrr").hide();},3000);
       return false;
 
-}
+}*/
 
 
 
@@ -165,6 +187,8 @@ const configers = {
 
 
   render() {
+        const { value, serialno} =this.state;
+
     return (
       <div>
         <Header />
@@ -197,7 +221,7 @@ const configers = {
                 <div className="box-body">
                 <div className="form-group">
                     <label htmlFor="Serial No">Serial No.</label>
-                    <input type="Serial No" className="form-control" id="Serial No" placeholder="Serial No"  onChange={(e)=>this.serialno(e)}/>
+                    <input type="Serial No" className="form-control" id="Serial No" placeholder="Serial No"  onChange={(e)=>this.serialno(e)}readOnly/>
                  <div className="errorrr"><h5></h5></div>
                   </div>
                   <div className="form-group">
@@ -229,11 +253,11 @@ const configers = {
                     {/*<p className="help-block">Example block-level help text here.</p>*/}
                   <div className="errorrrrrr"><h5></h5></div>
                   </div>
-                  <div className="checkbox">
+                 { /*<div className="checkbox">
                     <label>
                       <input type="checkbox"/> Check me out
                     </label>  
-                  </div>
+                  </div>*/}
                 </div>
                 {/* /.box-body */}
                 <div className="box-footer">

@@ -8,12 +8,12 @@
     "backup": "^1.1.0",
     "bootstrap": "^4.3.1",
     "bootstrap-sweetalert": "^1.0.1",
-  
+    "cryptr": "^4.0.2",
     "jquery": "^3.4.0",
     "matchstick": "^1.2.1",
     "material-ui-rating": "^3.1.1",
     "mdbreact": "^4.14.0",
-    
+    "node-cryptex": "0.0.2",
     "nodemailer": "^6.1.1",
     "react": "^16.8.6",
     "react-autocomplete": "^1.8.1",
@@ -27,7 +27,7 @@
     "react-redirect": "^1.0.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.0.14",
+    "react-scripts": "2.0.0-next.3e165448",
     "react-spinner-material": "^1.1.1",
     "react-star-rating": "^1.4.2",
     "react-star-rating-component": "^1.4.1",

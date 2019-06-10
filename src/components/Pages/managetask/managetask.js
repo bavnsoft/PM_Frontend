@@ -173,7 +173,7 @@ getEmptask(){
             
            <div className="box">
             <div className="box-header">
-              <h3 className="box-title">Data Table With Full Features</h3>
+              <h3 className="box-title"><b>Manage Task</b></h3>
             </div>
   
             <div className="box-body">
@@ -216,7 +216,7 @@ getEmptask(){
                       <td>{moment(item.date).format('hh:mm:ss')}</td>
                       <td>{moment(item.timeout).format('hh:mm:ss')}</td>
 
-                      <td>{item.timeout ? moment(item.timeout).format('hh:mm:ss') : 'N/A'}</td>
+                    {/*  <td>{item.timeout ? moment(item.timeout).format('hh:mm:ss') : 'N/A'}</td>*/}
                      
 
                       <td>{this.timeDifference(item.date,item.timeout)}</td>

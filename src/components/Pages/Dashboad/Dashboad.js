@@ -31,8 +31,13 @@ class Dashboad extends Component {
         TimeIn:'',
         clockout:'',
         loder:false,
-        taskstatus:''
-
+        taskstatus:'',
+        userTask:'',
+        hours:"",
+        TaskHours:"",
+        Taskdiscription:"",
+        Taskproject_id:"",
+        getproject:""
          
 
      };
@@ -52,6 +57,8 @@ class Dashboad extends Component {
 
    componentWillMount(){
     this.featchTasks();
+    this.getAllTask();
+    this.getproject();
    }
     componentDidUpdate() {
      const {TimeIn } = this.state;
@@ -136,7 +143,6 @@ timeout(e){
                     .then((result) => {
                       //access the results here....
 
-                      console.log(result.data);
 
                       if(result.data.status==true){
                           swal(result.data.message);
@@ -199,7 +205,6 @@ timeout(e){
           .then((result) => {
             //access the results here....
 
-            console.log(result.data);
 
             if(result.data.status==true){
                 swal(result.data.message);
@@ -218,7 +223,29 @@ timeout(e){
 }
 
 
+getAllTask(){
+ 
+   axios.post(config.LiveapiUrl+'getalltask',)
+                    .then((result) => {
+                      //access the results here....
 
+                        var userTasks= [];
+                        if(result.data.status==true){
+                             result.data.result.map((emp,index)=>{
+                                userTasks.push({date:emp.date,_id:emp._id,employeename:emp.user_id.employeename})
+
+                            })
+                             this.setState({userTask:userTasks});
+                            
+                          
+                        }else{
+                                
+                                 
+
+                        }
+
+                    });
+}
 
  featchTasks(){
    // this.setState({loder:true});
@@ -228,7 +255,6 @@ timeout(e){
           .then((result) => {
             //access the results here....
 
-            console.log(result.data.result.status);
             if (result.data.length !=0 ){
                 if(result.data.status==true){
                   result.data.result.map((time,index)=>{
@@ -245,15 +271,78 @@ timeout(e){
   }
 
 
+getTaskById(id){
+    axios.post(config.LiveapiUrl+'getTaskById', {id:id})
+          .then((result) => {
+            //access the results here....
 
+            if (result.data.length !=0 ){
+                if(result.data.status==true){
+                 const {getproject} =this.state;
+                  var projectName =  [];
+                  var projectId =  [];
+                  var Projects = JSON.parse(result.data.result[0].project_id);
+                   
+                  for(let i=0;i<=getproject.length;i++){
+                  
+                       if(getproject[i] != undefined){
+                           console.log(getproject[i]._id)
+                            projectId.push({_id:getproject[i]._id,projectname:getproject[i].projectname})
+                        
+                       }
+                    
+                  }
+                  //console.log(projectId,'---')
+                   for(let i=0;i<=projectId.length;i++){
+                   
+
+                    if(Projects[i] != undefined){
+                      if(Projects[i].name==projectId[i]._id){
+                         projectName.push({projectname:projectId[i].projectname})
+                       }
+                       console.log(projectId[i].projectname,'--0-0-0000-')
+                    }
+                   
+                     
+                    
+                  }
+
+                  
+              
+                   this.setState({
+                        TaskHours:JSON.parse(result.data.result[0].Hours),
+                        Taskdiscription:JSON.parse(result.data.result[0].discription),
+                        Taskproject_id:projectName
+                      })
+                  
+                  
+                }
+          }
+
+          });
+}
+
+ getproject(){
+
+     axios.post(config.LiveapiUrl+'getproject')
+          .then((result) => {
+            //access the results here.....
+              if(result.data.status==true){
+                   
+                   this.setState({getproject:result.data.result})
+                  
+              }
+
+          });
+  }
 
   render() {
 
-     const {timeout,loder,taskstatus,TimeOut,flag,userid,userTask,singleUsertask}=this.state;
+     const {getproject,timeout,loder,taskstatus,TimeOut,flag,userid,userTask,singleUsertask,TaskHours,Taskdiscription,Taskproject_id}=this.state;
        var role = localStorage.getItem('role');
-
-     console.log(singleUsertask);
-    
+    console.log(Taskproject_id)
+    console.log(TaskHours)
+    console.log(Taskdiscription)
     return (
            <div>
         <Header/>
@@ -266,7 +355,7 @@ timeout(e){
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box">
-           {  role=="admin" ?<h3 className="box-title"> &nbsp;&nbsp;Today Employee Presents</h3> :""}                      
+           {  role=="admin" ?<h3 className="box-title"> &nbsp;&nbsp;<b>Today Employee Presents</b></h3> :""}                      
 
                                 <div className="box-header with-border">
 
@@ -293,7 +382,7 @@ timeout(e){
                                   
                           <td>{item.employeename}</td>
                           
-                          <td><button type="button" className="btn btn-primary "data-toggle="modal" data-target="#myModal" onClick={()=>this.getAllTaks(item._id)}>View <i className="fa fa-eye"></i></button></td>
+                          <td><button type="button" className="btn btn-primary "data-toggle="modal" data-target="#myModal" onClick={()=>this.getTaskById(item._id)}>View <i className="fa fa-eye"></i></button></td>
                         
                         </tr>       
             
@@ -315,20 +404,38 @@ timeout(e){
               <div className="modal-body col-sm-4">
                <tr>
                  <th>Project</th>    
-            
               </tr>
-             
+               {Taskproject_id != "" && Taskproject_id.map((Project,index)=>(
+                <tr>
+                   <td>{Project.projectname}</td>
+                </tr>   
+                ))}
+                  
 
               </div>
              <div className="modal-body col-sm-4">
                <tr>
                  <th>Description</th>  
               </tr>
+               {Taskdiscription != "" && Taskdiscription.map((des,index)=>(
+                 <tr>
+                  <td>{des.description}</td>
+                 </tr>
+                ))}
+              
               </div>
               <div className="modal-body col-sm-4">
               <tr>
                  <th>Hours</th>                    
               </tr>
+            
+              {TaskHours != "" && TaskHours.map((hour,index)=>(
+                <tr>
+                
+                 <td>{hour.Hours}</td>
+                 </tr> 
+                ))}
+             
               </div> 
               
               </div>
@@ -345,7 +452,7 @@ timeout(e){
 
                                   :""}
                                   <div className="col-xs-10">
-                          {  role=="user" ? <h3 className="box-title">Dashboard</h3>:""}
+                          {  role=="user" ? <h3 className="box-title"><b>Dashboard</b></h3>:""}
                                 </div>  
 
             {flag == true ? <button type="button" className="btn btn-primary-das"><Link to={"/edit-task"}>Edit Task</Link></button>:

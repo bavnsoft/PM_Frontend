@@ -22,6 +22,7 @@ class edittask extends Component {
       projectName: [{ name: "" }],
       flag:false,
       count:1,
+      user_id:"",
 
     };
    }
@@ -49,6 +50,7 @@ componentDidMount(){
                       description:JSON.parse(result.data.result[0].discription),
                       Hours:JSON.parse(result.data.result[0].Hours),
                       id:result.data.result[0]._id,
+                      user_id:result.data.result[0].user_id,
                     });
                   }
 
@@ -142,22 +144,15 @@ alert('ys')
   
 
  
-    const  {projectName, description ,Hours , id} = this.state;
+    const  {projectName, description ,Hours , id , user_id} = this.state;
 
-
-let formData = new FormData();    //formdata object
-
-formData.append('projectName', projectName);   //append the values with key, value pair
-formData.append('description', description);
-formData.append('Hours', Hours);
-formData.append('id', id);
 
 const configers = {     
     headers: { 'content-type': 'multipart/form-data' }
 }
 
 
-      axios.post(config.LiveapiUrl+'editemptask', formData, configers)
+      axios.post(config.LiveapiUrl+'editMyTaks', {projectName:projectName, description:description,Hours:Hours,user_id:user_id})
       //console.log(req.body)
           .then((result) => {
            
@@ -238,12 +233,23 @@ handleShareholderDescription = idx => evt => {
   };
 
   handleRemoveShareholder = idx => () => {
-    this.setState({
-      projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
-      Hours: this.state.Hours.filter((s, sidx) => idx !== sidx),
-      description: this.state.Hours.filter((s, sidx) => idx !== sidx),
-      count:this.state.count - 1
-    });
+
+     swal({
+            title: "Are you sure?",
+            text: "You want to delete this task",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          
+          .then((willDelete) => {
+              this.setState({
+                projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
+                Hours: this.state.Hours.filter((s, sidx) => idx !== sidx),
+                description: this.state.Hours.filter((s, sidx) => idx !== sidx),
+                count:this.state.count - 1
+              });
+           })   
   };
 
 
@@ -331,7 +337,7 @@ handleShareholderDescription = idx => evt => {
         
          <button
           type="button" className="btn btn-primary-add"
-          onClick={this.handleAddShareholder}disabled={disabled[0].flag!="false"}
+          onClick={this.handleAddShareholder}
           >
           ADD TASK
         </button>

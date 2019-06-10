@@ -100,14 +100,14 @@ login(e){
             <div className="form-group has-feedback">
               <input type="email" className="form-control" placeholder="Email"onChange={(e)=>this.email(e)} />
               <div className="errorr"><h5></h5></div>
-              <span className="glyphicon glyphicon-envelope form-control-feedback" />
+{/*              <span className="glyphicon glyphicon-envelope form-control-feedback" />*/}
               
 
             </div>
             <div className="form-group has-feedback">
               <input type="password" className="form-control" placeholder="Password" onChange={(e)=>this.password(e)}/>
               <div className="errorrr"><h5></h5></div>
-              <span className="glyphicon glyphicon-lock form-control-feedback" />
+{/*              <span className="glyphicon glyphicon-lock form-control-feedback" />*/}
               
 
             </div>

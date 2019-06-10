@@ -68,7 +68,7 @@ console.log(this.state);
 }
 
    const { username, email, password } = this.state;
-   axios.post(config.LocalapiUrl+'signup', { username, email, password})
+   axios.post(config.LiveapiUrl+'signup', { username, email, password})
           .then((result) => {
             //access the results here....
 

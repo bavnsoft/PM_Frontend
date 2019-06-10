@@ -122,7 +122,7 @@ Delete(employeeid){
         <div className="box-header">     
         <div className="row">
         <div className="col-xs-10">                       
-          <h3 className="box-title">Manage Employee</h3>                         
+          <h3 className="box-title"><b>Manage Employee</b></h3>                         
         </div>
         <div className="col-xs-2">
         <button type="button"className="btn btn-primary-emp"><Link to ='/addemployee'>Add Employee</Link></button>

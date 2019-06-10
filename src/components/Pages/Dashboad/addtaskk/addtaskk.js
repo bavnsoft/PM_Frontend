@@ -170,10 +170,23 @@ handleShareholderDescription = idx => evt => {
   };
 
   handleRemoveShareholder = idx => () => {
-    this.setState({
-      projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
-      count:this.state.count - 1
-    });
+
+    swal({
+            title: "Are you sure?",
+            text: "You want to delete this task",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          
+          .then((willDelete) => {
+            if (willDelete) {
+                this.setState({
+                  projectName: this.state.projectName.filter((s, sidx) => idx !== sidx),
+                  count:this.state.count - 1
+                });
+            }})
+  
   };
 
 
@@ -264,7 +277,7 @@ handleShareholderDescription = idx => evt => {
         
          <button
           type="button" className="btn btn-primary-add"
-          onClick={this.handleAddShareholder}disabled={disabled[0].flag!="false"}
+          onClick={this.handleAddShareholder} 
           >
           ADD TASK
         </button>

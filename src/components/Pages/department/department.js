@@ -145,7 +145,7 @@ departmentname(e){
   updatedepartmentname(e){
 
     const  {editdepartmentname,departmentId} = this.state;
-     axios.post(config.LocalapiUrl+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
+     axios.post(config.LiveapiUrl+'editDepartment', {id:departmentId,departmentname:editdepartmentname})
           .then((result) => {
             //access the results here....
 
@@ -203,7 +203,7 @@ departmentname(e){
            <div className="box box-primary">
               <div className="box-header with-border">
              <div className="col-sm-6">           
-            <h3>Department</h3>
+            <h3><b>Department</b></h3>
            </div>
           <div className="col-sm-3">
           <input type="text" className="form-control" id=" department"  placeholder="Department Name" onChange={(e)=>this.departmentname(e)}/>

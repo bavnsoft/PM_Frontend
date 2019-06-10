@@ -319,7 +319,9 @@ handleShareholderDetail = idx => evt => {
             </div>
 
             
-            <div className="col-md-3">
+          { /* <div className="col-md-3">
+                <div className="form-group">
+
                 <input
                   type="text"
                   placeholder={`Milestone Detail`}
@@ -327,10 +329,22 @@ handleShareholderDetail = idx => evt => {
                   onChange={this.handleShareholderDetail(idx)}
                 />
             </div>
+*/}
+
+
+
+<div className="col-sm-3">
+    <div className="form-group">
+      <textarea className="form-control-addmileston" rows="5" id="Milestone" name="text"placeholder="Milestone Detail"
+       value={shareholder.detail}
+       onChange={this.handleShareholderDetail(idx)}></textarea>
+  </div>
+</div>
+
 
             <div className="col-md-3">
                 <input
-                  type="text"
+                  type="number"
                   placeholder={`Hours`}
                   value={shareholder.hours}
                   onChange={this.handleShareholderHours(idx)}
@@ -381,7 +395,7 @@ handleShareholderDetail = idx => evt => {
 
                                   <div className="row">
                                   <div className="col-xs-10">
-                                    <h3 className="box-title">Manage Project</h3>
+                                    <h3 className="box-title"><b>Manage Project</b></h3>
                                 </div>
                                           <div className="col-xs-2">
                 <button type="button"className="btn btn-primary-Project"><Link to ='/addproject'>Add Project</Link></button>
