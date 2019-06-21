@@ -135,6 +135,8 @@ componentDidMount(){
                         </NavLink>
                         </li>
 
+                         
+
                     </ul>
                 </section>
             </aside> 
@@ -192,6 +194,16 @@ componentDidMount(){
                         </NavLink>
                         </li>
 
+                           <li>
+            
+                         <NavLink to="/manageovertime"exact activeStyle={{color:'white'}}>
+
+                            <i className="fa fa-th"></i> <span>Manage Overtime</span>
+                            <span className="pull-right-container">
+                            <small className="label pull-right bg-green"></small>
+                            </span>
+                        </NavLink>
+                        </li>
                     </ul>
                 </section>
             </aside> 
