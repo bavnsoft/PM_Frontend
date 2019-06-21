@@ -20,6 +20,9 @@ import adddepartment from './components/Pages/department/adddepartment/adddepart
 import edittask from './components/Pages/managetask/edittask/edittask'
 import addtaskk from './components/Pages/Dashboad/addtaskk/addtaskk'
 import Edittask from './components/Pages/Dashboad/addtaskk/Edit-task'
+import manageovertime from './components/Pages/manageovertime/manageovertime'
+import editovertime from './components/Pages/manageovertime/editovertime/editovertime'
+import addovertime from './components/Pages/manageovertime/addovertime/addovertime'
 
 
 import App from './App';
@@ -30,13 +33,13 @@ import App from './App';
 
 ReactDOM.render((
 <Router>
-		<div>
-			<Route exact path = "/" component = {login} />
-			<Route path = "/login" component = {login} />
-			<Route path = "/register" component = {register} />
-			<Route path = "/Dashboard" component = {Dashboad} />
-		    <Route path = "/Employees" component = {Employees} />
-      		<Route path = "/department" component = {department} />           
+            <div>
+                  <Route exact path = "/" component = {login} />
+                  <Route path = "/login" component = {login} />
+                  <Route path = "/register" component = {register} />
+                  <Route path = "/Dashboard" component = {Dashboad} />
+                <Route path = "/Employees" component = {Employees} />
+                  <Route path = "/department" component = {department} />           
             <Route path = "/manageproject" component = {manageproject} />
             <Route path = "/addproject" component = {addproject} />
             <Route path = "/addemployee" component = {addemployee} />
@@ -49,8 +52,11 @@ ReactDOM.render((
             <Route path = "/edittask" component = {edittask} />
             <Route path = "/addtaskk" component = {addtaskk} />
             <Route path = "/edit-task" component = {Edittask} />
+            <Route path = "/manageovertime" component = {manageovertime} />
+            <Route path = "/editovertime" component = {editovertime} />
+            <Route path = "/addovertime" component = {addovertime} />
 
 
-		</div>
+            </div>
 </Router>
 ), document.getElementById('root'))
