@@ -1,7 +1,7 @@
 /*!
  *   AdminLTE v2.4.0
  *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <https://adminlte.io>
+ *   Website: Almsaeed Studio <https://adminlte.io>
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
  */
@@ -5902,4 +5902,10 @@ textarea#Milestone {
 img#blah {
     width: 108px;
     height: 89px;
+}
+@media screen and (max-width: 480px){
+button.btn.btn-primary-over {
+    margin: 0px 0px 0px -84px;
+}
+
 }

@@ -205,11 +205,11 @@ departmentname(e){
              <div className="col-sm-6">           
             <h3><b>Department</b></h3>
            </div>
-          <div className="col-sm-3">
+          <div className="col-sm-10">
           <input type="text" className="form-control" id=" department"  placeholder="Department Name" onChange={(e)=>this.departmentname(e)}/>
           <div className="errorrr"><h5></h5></div>
            </div>
-          <div className="col-sm-3">
+          <div className="col-sm-2">
              <button type="button"className="btn btn-primary" onClick={(e)=>this.department(e)}>Add Dpeartment</button>
            </div>
         </div>

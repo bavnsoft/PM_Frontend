@@ -111,7 +111,7 @@ Delete(Timeid){
           <h3 className="box-title"><b>Manage Overtime</b></h3>                         
         </div>
         <div className="col-xs-2">
-        <button type="button"className="btn btn-primary"><Link to ='/addovertime'>Add Overtime</Link></button>
+        <button type="button"className="btn btn-primary-over"><Link to ='/addovertime'>Add Overtime</Link></button>
         </div>
        </div>
       </div>
@@ -119,9 +119,9 @@ Delete(Timeid){
           <table id="example1" className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th className="col-sm-5">Date</th>
-                <th className="col-sm-5">Time</th>
-                <th colspan="2" style={{ textAlign: "center"}}>Action</th>
+                <th className="col-sm-4">Date</th>
+                <th className="col-sm-4">Time</th>
+                <th colspan="4" style={{ textAlign: "center"}}>Action</th>
                
               </tr>
             </thead>
@@ -132,6 +132,8 @@ Delete(Timeid){
                         <tr>                
                           <td>{moment(item.overtimeDate).format('LL')}</td>
                           <td>{item.Time}</td>
+                          <td>{item.Timeid}</td>
+
                           <td> <Link to={'editovertime/'+item._id  }><button type="button" className="btn btn-primary">Edit <i className="fa fa-pencil-square-o"></i></button></Link></td>
                          <td><button type="button" className="btn btn-primary"onClick={()=>this.Delete(item._id)}>Delete <i className="fa fa-trash"></i></button></td>
 
